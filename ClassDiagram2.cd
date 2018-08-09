@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Script.Asset" Collapsed="true">
+    <Position X="34.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAQAAAIAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Script\Asset.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.R" Collapsed="true">
+    <Position X="38" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAACQAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\R.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Characters.ButterFly" Collapsed="true">
+    <Position X="36.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Characters\ButterFly.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Characters.Player" Collapsed="true">
+    <Position X="36.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCACAAAAAAACAiAAAAAIAAAAAAIOAAAgEAAAAgAAgAA=</HashCode>
+      <FileName>Assets\Script\Characters\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.BeanTree" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\BeanTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.Box" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAgAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\Box.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.Dragon" Collapsed="true">
+    <Position X="14" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\Dragon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.Ice" Collapsed="true">
+    <Position X="20.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\Ice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.Item" Collapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAABAAAAACAAAAAAAAAAAEAUAAAAAIAAAAiAAEA=</HashCode>
+      <FileName>Assets\Script\Terrains\Item.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Script.Terrains.Lilypad" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\Lilypad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.Maze" Collapsed="true">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAABIAAAgAGAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\Maze.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Script.Terrains.Mirror" Collapsed="true">
+    <Position X="16.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAgAAAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\Mirror.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.PickableItem" Collapsed="true">
+    <Position X="23" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAQAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\PickableItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.PinWheel" Collapsed="true">
+    <Position X="25.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAgAAAAAABAAAAAAGAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\PinWheel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Script.Terrains.Rail" Collapsed="true">
+    <Position X="29.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAABAAAAAAGAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\Rail.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Script.Terrains.Snow" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\Snow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.StopPark" Collapsed="true">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\StopPark.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.Switch" Collapsed="true">
+    <Position X="18.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAIAAAACAAEA=</HashCode>
+      <FileName>Assets\Script\Terrains\Switch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Terrains.WaterFlow" Collapsed="true">
+    <Position X="27.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAABAAAAAAGAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\WaterFlow.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Script.Terrains.Wind" Collapsed="true">
+    <Position X="32" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\Wind.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Script.Tilemaps.ItemTile" Collapsed="true">
+    <Position X="38" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABACAAAAQAAAAAAAAAAAAEAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Tilemaps\ItemTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapInfo" Collapsed="true">
+    <Position X="34.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Tilemaps\MapInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tile2Object" Collapsed="true">
+    <Position X="34.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Tilemaps\Tile2Object.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Script.Terrains.IItemHandler" Collapsed="true">
+    <Position X="34.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAQAAAAAIAAAAgAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\ItemHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Script.Terrains.ISwitchHandler" Collapsed="true">
+    <Position X="36.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Script\Terrains\SwitchHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Script.Name" Collapsed="true">
+    <Position X="34.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAgAEBECwuAUEHAAEACDAASEB1gkBgAAgEAAIhCAgo=</HashCode>
+      <FileName>Assets\Script\Asset.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Script.State" Collapsed="true">
+    <Position X="36.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEAAAAABAwgEoAAAQAAAgAAAAYCAAAgEAEAAAIAQAA=</HashCode>
+      <FileName>Assets\Script\Asset.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

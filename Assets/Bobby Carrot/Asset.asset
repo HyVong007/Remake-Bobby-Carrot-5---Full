@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e059e0a9401d9546a31523a1a772579, type: 3}
+  m_Name: Asset
+  m_EditorClassIdentifier: 
+  pinWheel:
+    left: {fileID: 0}
+    right: {fileID: 0}
+    up: {fileID: 0}
+    down: {fileID: 0}
+    leftAnim: {fileID: 0}
+    rightAnim: {fileID: 0}
+    upAnim: {fileID: 0}
+    downAnim: {fileID: 0}
+  maze:
+    leftUp: {fileID: 0}
+    leftDown: {fileID: 0}
+    rightUp: {fileID: 0}
+    rightDown: {fileID: 0}
+    vertical: {fileID: 0}
+    horizontal: {fileID: 0}
+  prefabs:
+    normalPlatform: {fileID: 0}
+    waterFlow: {fileID: 0}
+    item: {fileID: 0}
+    mowerPark: {fileID: 0}
+    _switch: {fileID: 0}
+    trap: {fileID: 0}
+    mirror: {fileID: 0}
+    railRoad: {fileID: 0}
+    maze: {fileID: 0}
+    box: {fileID: 0}
+    carrot: {fileID: 0}
+    easterEgg: {fileID: 0}
+    pinWheel: {fileID: 0}
+    beanTree: {fileID: 0}
+    dragon: {fileID: 0}
+    butterFly: {fileID: 0}
+    lotusLeaf: {fileID: 0}
+    bobby: {fileID: 0}
+    fireBall: {fileID: 0}
+  anims:
+    water: {fileID: 0}
+    star: {fileID: 0}
+    waterFall: {fileID: 0}
+    target: {fileID: 0}
+    wood: {fileID: 0}
+    icyBlock: {fileID: 0}
+    wind: {fileID: 0}
+    goldenCoin: {fileID: 0}
+  switchRail:
+    none:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    yellow:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    red:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    green:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    violet:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    pink:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+  switchMaze:
+    none:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    yellow:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    red:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    green:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    violet:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    pink:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+  switchWaterFlow:
+    none:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    yellow:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    red:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    green:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    violet:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    pink:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+  switchBox:
+    none:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    yellow:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    red:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    green:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    violet:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    pink:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+  switchPinWheel:
+    none:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    yellow:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    red:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    green:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    violet:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
+    pink:
+      ON: {fileID: 0}
+      OFF: {fileID: 0}
