@@ -31,7 +31,7 @@ namespace IngameDebugConsole
 
 		// Number of new debug entries since the log window has been closed
 		private int newInfoCount = 0, newWarningCount = 0, newErrorCount = 0;
-		
+
 		private Color normalColor;
 
 		[SerializeField]
@@ -48,7 +48,7 @@ namespace IngameDebugConsole
 
 		void Awake()
 		{
-			popupTransform = (RectTransform) transform;
+			popupTransform = (RectTransform)transform;
 			backgroundImage = GetComponent<Image>();
 			canvasGroup = GetComponent<CanvasGroup>();
 
@@ -63,7 +63,7 @@ namespace IngameDebugConsole
 		public void OnViewportDimensionsChanged()
 		{
 			halfSize = popupTransform.sizeDelta * 0.5f * popupTransform.root.localScale.x;
-			OnEndDrag( null );
+			OnEndDrag(null);
 		}
 
 		public void NewInfoLogArrived()
@@ -71,7 +71,7 @@ namespace IngameDebugConsole
 			newInfoCount++;
 			newInfoCountText.text = newInfoCount.ToString();
 
-			if( newWarningCount == 0 && newErrorCount == 0 )
+			if (newWarningCount == 0 && newErrorCount == 0)
 				backgroundImage.color = alertColorInfo;
 		}
 
@@ -80,7 +80,7 @@ namespace IngameDebugConsole
 			newWarningCount++;
 			newWarningCountText.text = newWarningCount.ToString();
 
-			if( newErrorCount == 0 )
+			if (newErrorCount == 0)
 				backgroundImage.color = alertColorWarning;
 		}
 
@@ -104,33 +104,33 @@ namespace IngameDebugConsole
 
 			backgroundImage.color = normalColor;
 		}
-		
+
 		// A simple smooth movement animation
-		private IEnumerator MoveToPosAnimation( Vector3 targetPos )
+		private IEnumerator MoveToPosAnimation(Vector3 targetPos)
 		{
 			float modifier = 0f;
 			Vector3 initialPos = popupTransform.position;
 
-			while( modifier < 1f )
+			while (modifier < 1f)
 			{
 				modifier += 4f * Time.unscaledDeltaTime;
-				popupTransform.position = Vector3.Lerp( initialPos, targetPos, modifier );
+				popupTransform.position = Vector3.Lerp(initialPos, targetPos, modifier);
 
 				yield return null;
 			}
 		}
 
 		// Popup is clicked
-		public void OnPointerClick( PointerEventData data )
+		public void OnPointerClick(PointerEventData data)
 		{
 			// Hide the popup and show the log window
-			if( !isPopupBeingDragged )
+			if (!isPopupBeingDragged)
 			{
 				debugManager.Show();
 				Hide();
 			}
 		}
-		
+
 		// Hides the log window and shows the popup
 		public void Show()
 		{
@@ -153,26 +153,26 @@ namespace IngameDebugConsole
 			canvasGroup.alpha = 0f;
 		}
 
-		public void OnBeginDrag( PointerEventData data )
+		public void OnBeginDrag(PointerEventData data)
 		{
 			isPopupBeingDragged = true;
 
 			// If a smooth movement animation is in progress, cancel it
-			if( moveToPosCoroutine != null )
+			if (moveToPosCoroutine != null)
 			{
-				StopCoroutine( moveToPosCoroutine );
+				StopCoroutine(moveToPosCoroutine);
 				moveToPosCoroutine = null;
 			}
 		}
 
 		// Reposition the popup
-		public void OnDrag( PointerEventData data )
+		public void OnDrag(PointerEventData data)
 		{
 			popupTransform.position = data.position;
 		}
 
 		// Smoothly translate the popup to the nearest edge
-		public void OnEndDrag( PointerEventData data )
+		public void OnEndDrag(PointerEventData data)
 		{
 			int screenWidth = Screen.width;
 			int screenHeight = Screen.height;
@@ -181,41 +181,41 @@ namespace IngameDebugConsole
 
 			// Find distances to all four edges
 			float distToLeft = pos.x;
-			float distToRight = Mathf.Abs( pos.x - screenWidth );
+			float distToRight = Mathf.Abs(pos.x - screenWidth);
 
-			float distToBottom = Mathf.Abs( pos.y );
-			float distToTop = Mathf.Abs( pos.y - screenHeight );
+			float distToBottom = Mathf.Abs(pos.y);
+			float distToTop = Mathf.Abs(pos.y - screenHeight);
 
-			float horDistance = Mathf.Min( distToLeft, distToRight );
-			float vertDistance = Mathf.Min( distToBottom, distToTop );
+			float horDistance = Mathf.Min(distToLeft, distToRight);
+			float vertDistance = Mathf.Min(distToBottom, distToTop);
 
 			// Find the nearest edge's coordinates
-			if( horDistance < vertDistance )
+			if (horDistance < vertDistance)
 			{
-				if( distToLeft < distToRight )
-					pos = new Vector3( halfSize.x, pos.y, 0f );
+				if (distToLeft < distToRight)
+					pos = new Vector3(halfSize.x, pos.y, 0f);
 				else
-					pos = new Vector3( screenWidth - halfSize.x, pos.y, 0f );
+					pos = new Vector3(screenWidth - halfSize.x, pos.y, 0f);
 
-				pos.y = Mathf.Clamp( pos.y, halfSize.y, screenHeight - halfSize.y );
+				pos.y = Mathf.Clamp(pos.y, halfSize.y, screenHeight - halfSize.y);
 			}
 			else
 			{
-				if( distToBottom < distToTop )
-					pos = new Vector3( pos.x, halfSize.y, 0f );
+				if (distToBottom < distToTop)
+					pos = new Vector3(pos.x, halfSize.y, 0f);
 				else
-					pos = new Vector3( pos.x, screenHeight - halfSize.y, 0f );
+					pos = new Vector3(pos.x, screenHeight - halfSize.y, 0f);
 
-				pos.x = Mathf.Clamp( pos.x, halfSize.x, screenWidth - halfSize.x );
+				pos.x = Mathf.Clamp(pos.x, halfSize.x, screenWidth - halfSize.x);
 			}
 
 			// If another smooth movement animation is in progress, cancel it
-			if( moveToPosCoroutine != null )
-				StopCoroutine( moveToPosCoroutine );
+			if (moveToPosCoroutine != null)
+				StopCoroutine(moveToPosCoroutine);
 
 			// Smoothly translate the popup to the specified position
-			moveToPosCoroutine = MoveToPosAnimation( pos );
-			StartCoroutine( moveToPosCoroutine );
+			moveToPosCoroutine = MoveToPosAnimation(pos);
+			StartCoroutine(moveToPosCoroutine);
 
 			isPopupBeingDragged = false;
 		}

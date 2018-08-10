@@ -16,3 +16,6 @@ public class MazeShape_Sprite_Dict : SerializableDictionary<Maze.Shape, Sprite> 
 
 [System.Serializable]
 public class CarrotState_Sprite_Dict : SerializableDictionary<Carrot.State, Sprite> { }
+
+[System.Serializable]
+public class ItemName_Sprite_Dict : SerializableDictionary<Item.Name, Sprite> { }

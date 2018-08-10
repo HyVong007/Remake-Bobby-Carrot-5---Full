@@ -14,44 +14,44 @@ namespace IngameDebugConsole
 		public ScrollRect debugsScrollRect;
 		public DebugLogManager debugLogManager;
 
-		public void OnScroll( PointerEventData data )
+		public void OnScroll(PointerEventData data)
 		{
-			if( IsScrollbarAtBottom() )
-				debugLogManager.SetSnapToBottom( true );
+			if (IsScrollbarAtBottom())
+				debugLogManager.SetSnapToBottom(true);
 			else
-				debugLogManager.SetSnapToBottom( false );
+				debugLogManager.SetSnapToBottom(false);
 		}
 
-		public void OnBeginDrag( PointerEventData data )
+		public void OnBeginDrag(PointerEventData data)
 		{
-			debugLogManager.SetSnapToBottom( false );
+			debugLogManager.SetSnapToBottom(false);
 		}
 
-		public void OnEndDrag( PointerEventData data )
+		public void OnEndDrag(PointerEventData data)
 		{
-			if( IsScrollbarAtBottom() )
-				debugLogManager.SetSnapToBottom( true );
+			if (IsScrollbarAtBottom())
+				debugLogManager.SetSnapToBottom(true);
 			else
-				debugLogManager.SetSnapToBottom( false );
+				debugLogManager.SetSnapToBottom(false);
 		}
 
-		public void OnScrollbarDragStart( BaseEventData data )
+		public void OnScrollbarDragStart(BaseEventData data)
 		{
-			debugLogManager.SetSnapToBottom( false );
+			debugLogManager.SetSnapToBottom(false);
 		}
 
-		public void OnScrollbarDragEnd( BaseEventData data )
+		public void OnScrollbarDragEnd(BaseEventData data)
 		{
-			if( IsScrollbarAtBottom() )
-				debugLogManager.SetSnapToBottom( true );
+			if (IsScrollbarAtBottom())
+				debugLogManager.SetSnapToBottom(true);
 			else
-				debugLogManager.SetSnapToBottom( false );
+				debugLogManager.SetSnapToBottom(false);
 		}
 
 		private bool IsScrollbarAtBottom()
 		{
 			float scrollbarYPos = debugsScrollRect.verticalNormalizedPosition;
-			if( scrollbarYPos <= 1E-6f )
+			if (scrollbarYPos <= 1E-6f)
 				return true;
 
 			return false;

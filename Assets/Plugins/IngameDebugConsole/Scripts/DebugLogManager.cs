@@ -31,7 +31,7 @@ namespace IngameDebugConsole
 		private static DebugLogManager instance = null;
 
 		// Debug console will persist between scenes
-		[Header( "Properties" )]
+		[Header("Properties")]
 		[SerializeField]
 		private bool singleton = true;
 
@@ -52,7 +52,7 @@ namespace IngameDebugConsole
 		[SerializeField]
 		private string logcatArguments;
 
-		[Header( "Visuals" )]
+		[Header("Visuals")]
 		[SerializeField]
 		private DebugLogItem logItemPrefab;
 
@@ -76,7 +76,7 @@ namespace IngameDebugConsole
 		[SerializeField]
 		private Color filterButtonsSelectedColor;
 
-		[Header( "Internal References" )]
+		[Header("Internal References")]
 		[SerializeField]
 		private RectTransform logWindowTR;
 
@@ -161,12 +161,12 @@ namespace IngameDebugConsole
 		private void OnEnable()
 		{
 			// Only one instance of debug console is allowed
-			if( instance == null )
+			if (instance == null)
 			{
 				instance = this;
 				pooledLogItems = new List<DebugLogItem>();
 
-				canvasTR = (RectTransform) transform;
+				canvasTR = (RectTransform)transform;
 
 				// Associate sprites with log types
 				logSpriteRepresentations = new Dictionary<LogType, Sprite>
@@ -183,23 +183,23 @@ namespace IngameDebugConsole
 				filterWarningButton.color = filterButtonsSelectedColor;
 				filterErrorButton.color = filterButtonsSelectedColor;
 
-				collapsedLogEntries = new List<DebugLogEntry>( 128 );
-				collapsedLogEntriesMap = new Dictionary<DebugLogEntry, int>( 128 );
+				collapsedLogEntries = new List<DebugLogEntry>(128);
+				collapsedLogEntriesMap = new Dictionary<DebugLogEntry, int>(128);
 				uncollapsedLogEntriesIndices = new DebugLogIndexList();
 				indicesOfListEntriesToShow = new DebugLogIndexList();
 
-				recycledListView.Initialize( this, collapsedLogEntries, indicesOfListEntriesToShow, logItemPrefab.Transform.sizeDelta.y );
-				recycledListView.UpdateItemsInTheList( true );
+				recycledListView.Initialize(this, collapsedLogEntries, indicesOfListEntriesToShow, logItemPrefab.Transform.sizeDelta.y);
+				recycledListView.UpdateItemsInTheList(true);
 
-				nullPointerEventData = new PointerEventData( null );
+				nullPointerEventData = new PointerEventData(null);
 
 				// If it is a singleton object, don't destroy it between scene changes
-				if( singleton )
-					DontDestroyOnLoad( gameObject );
+				if (singleton)
+					DontDestroyOnLoad(gameObject);
 			}
-			else if( this != instance )
+			else if (this != instance)
 			{
-				Destroy( gameObject );
+				Destroy(gameObject);
 				return;
 			}
 
@@ -207,7 +207,7 @@ namespace IngameDebugConsole
 			Application.logMessageReceived -= ReceivedLog;
 			Application.logMessageReceived += ReceivedLog;
 
-			if( receiveLogcatLogsInAndroid )
+			if (receiveLogcatLogsInAndroid)
 			{
 #if !UNITY_EDITOR && UNITY_ANDROID
 				if( logcatListener == null )
@@ -221,7 +221,7 @@ namespace IngameDebugConsole
 			commandInputField.onValidateInput -= OnValidateCommand;
 			commandInputField.onValidateInput += OnValidateCommand;
 
-			if( minimumHeight < 200f )
+			if (minimumHeight < 200f)
 				minimumHeight = 200f;
 
 			//Debug.LogAssertion( "assert" );
@@ -248,10 +248,10 @@ namespace IngameDebugConsole
 		// Launch in popup mode
 		private void Start()
 		{
-			if( startInPopupMode )
+			if (startInPopupMode)
 				HideButtonPressed();
 			else
-				popupManager.OnPointerClick( null );
+				popupManager.OnPointerClick(null);
 		}
 
 		// Window is resized, update the list
@@ -263,10 +263,10 @@ namespace IngameDebugConsole
 		// If snapToBottom is enabled, force the scrollbar to the bottom
 		private void LateUpdate()
 		{
-			if( screenDimensionsChanged )
+			if (screenDimensionsChanged)
 			{
 				// Update the recycled list view
-				if( isLogWindowVisible )
+				if (isLogWindowVisible)
 					recycledListView.OnViewportDimensionsChanged();
 				else
 					popupManager.OnViewportDimensionsChanged();
@@ -274,18 +274,18 @@ namespace IngameDebugConsole
 				screenDimensionsChanged = false;
 			}
 
-			if( snapToBottom )
+			if (snapToBottom)
 			{
 				logItemsScrollRect.verticalNormalizedPosition = 0f;
 
-				if( snapToBottomButton.activeSelf )
-					snapToBottomButton.SetActive( false );
+				if (snapToBottomButton.activeSelf)
+					snapToBottomButton.SetActive(false);
 			}
 			else
 			{
 				float scrollPos = logItemsScrollRect.verticalNormalizedPosition;
-				if( snapToBottomButton.activeSelf != ( scrollPos > 1E-6f && scrollPos < 0.9999f ) )
-					snapToBottomButton.SetActive( !snapToBottomButton.activeSelf );
+				if (snapToBottomButton.activeSelf != (scrollPos > 1E-6f && scrollPos < 0.9999f))
+					snapToBottomButton.SetActive(!snapToBottomButton.activeSelf);
 			}
 
 #if !UNITY_EDITOR && UNITY_ANDROID
@@ -299,22 +299,22 @@ namespace IngameDebugConsole
 		}
 
 		// Command field input is changed, check if command is submitted
-		public char OnValidateCommand( string text, int charIndex, char addedChar )
+		public char OnValidateCommand(string text, int charIndex, char addedChar)
 		{
 			// If command is submitted
-			if( addedChar == '\n' )
+			if (addedChar == '\n')
 			{
 				// Clear the command field
-				if( clearCommandAfterExecution )
+				if (clearCommandAfterExecution)
 					commandInputField.text = "";
 
-				if( text.Length > 0 )
+				if (text.Length > 0)
 				{
 					// Execute the command
-					DebugLogConsole.ExecuteCommand( text );
+					DebugLogConsole.ExecuteCommand(text);
 
 					// Snap to bottom and select the latest entry
-					SetSnapToBottom( true );
+					SetSnapToBottom(true);
 				}
 
 				return '\0';
@@ -324,21 +324,21 @@ namespace IngameDebugConsole
 		}
 
 		// A debug entry is received
-		private void ReceivedLog( string logString, string stackTrace, LogType logType )
+		private void ReceivedLog(string logString, string stackTrace, LogType logType)
 		{
-			DebugLogEntry logEntry = new DebugLogEntry( logString, stackTrace, null );
+			DebugLogEntry logEntry = new DebugLogEntry(logString, stackTrace, null);
 
 			// Check if this entry is a duplicate (i.e. has been received before)
 			int logEntryIndex;
-			bool isEntryInCollapsedEntryList = collapsedLogEntriesMap.TryGetValue( logEntry, out logEntryIndex );
-			if( !isEntryInCollapsedEntryList )
+			bool isEntryInCollapsedEntryList = collapsedLogEntriesMap.TryGetValue(logEntry, out logEntryIndex);
+			if (!isEntryInCollapsedEntryList)
 			{
 				// It is not a duplicate,
 				// add it to the list of unique debug entries
 				logEntry.logTypeSpriteRepresentation = logSpriteRepresentations[logType];
 
 				logEntryIndex = collapsedLogEntries.Count;
-				collapsedLogEntries.Add( logEntry );
+				collapsedLogEntries.Add(logEntry);
 				collapsedLogEntriesMap[logEntry] = logEntryIndex;
 			}
 			else
@@ -351,43 +351,43 @@ namespace IngameDebugConsole
 
 			// Add the index of the unique debug entry to the list
 			// that stores the order the debug entries are received
-			uncollapsedLogEntriesIndices.Add( logEntryIndex );
+			uncollapsedLogEntriesIndices.Add(logEntryIndex);
 
 			// If this debug entry matches the current filters,
 			// add it to the list of debug entries to show
 			Sprite logTypeSpriteRepresentation = logEntry.logTypeSpriteRepresentation;
-			if( isCollapseOn && isEntryInCollapsedEntryList )
+			if (isCollapseOn && isEntryInCollapsedEntryList)
 			{
-				if( isLogWindowVisible )
-					recycledListView.OnCollapsedLogEntryAtIndexUpdated( logEntryIndex );
+				if (isLogWindowVisible)
+					recycledListView.OnCollapsedLogEntryAtIndexUpdated(logEntryIndex);
 			}
-			else if( logFilter == DebugLogFilter.All ||
-			   ( logTypeSpriteRepresentation == infoLog && ( ( logFilter & DebugLogFilter.Info ) == DebugLogFilter.Info ) ) ||
-			   ( logTypeSpriteRepresentation == warningLog && ( ( logFilter & DebugLogFilter.Warning ) == DebugLogFilter.Warning ) ) ||
-			   ( logTypeSpriteRepresentation == errorLog && ( ( logFilter & DebugLogFilter.Error ) == DebugLogFilter.Error ) ) )
+			else if (logFilter == DebugLogFilter.All ||
+			   (logTypeSpriteRepresentation == infoLog && ((logFilter & DebugLogFilter.Info) == DebugLogFilter.Info)) ||
+			   (logTypeSpriteRepresentation == warningLog && ((logFilter & DebugLogFilter.Warning) == DebugLogFilter.Warning)) ||
+			   (logTypeSpriteRepresentation == errorLog && ((logFilter & DebugLogFilter.Error) == DebugLogFilter.Error)))
 			{
-				indicesOfListEntriesToShow.Add( logEntryIndex );
+				indicesOfListEntriesToShow.Add(logEntryIndex);
 
-				if( isLogWindowVisible )
-					recycledListView.OnLogEntriesUpdated( false );
+				if (isLogWindowVisible)
+					recycledListView.OnLogEntriesUpdated(false);
 			}
 
-			if( logType == LogType.Log )
+			if (logType == LogType.Log)
 			{
 				infoEntryCount++;
 				infoEntryCountText.text = infoEntryCount.ToString();
 
 				// If debug popup is visible, notify it of the new debug entry
-				if( !isLogWindowVisible )
+				if (!isLogWindowVisible)
 					popupManager.NewInfoLogArrived();
 			}
-			else if( logType == LogType.Warning )
+			else if (logType == LogType.Warning)
 			{
 				warningEntryCount++;
 				warningEntryCountText.text = warningEntryCount.ToString();
 
 				// If debug popup is visible, notify it of the new debug entry
-				if( !isLogWindowVisible )
+				if (!isLogWindowVisible)
 					popupManager.NewWarningLogArrived();
 			}
 			else
@@ -396,13 +396,13 @@ namespace IngameDebugConsole
 				errorEntryCountText.text = errorEntryCount.ToString();
 
 				// If debug popup is visible, notify it of the new debug entry
-				if( !isLogWindowVisible )
+				if (!isLogWindowVisible)
 					popupManager.NewErrorLogArrived();
 			}
 		}
 
 		// Value of snapToBottom is changed (user scrolled the list manually)
-		public void SetSnapToBottom( bool snapToBottom )
+		public void SetSnapToBottom(bool snapToBottom)
 		{
 			this.snapToBottom = snapToBottom;
 		}
@@ -410,7 +410,7 @@ namespace IngameDebugConsole
 		// Make sure the scroll bar of the scroll rect is adjusted properly
 		public void ValidateScrollPosition()
 		{
-			logItemsScrollRect.OnScroll( nullPointerEventData );
+			logItemsScrollRect.OnScroll(nullPointerEventData);
 		}
 
 		// Show the log window
@@ -418,7 +418,7 @@ namespace IngameDebugConsole
 		{
 			// Update the recycled list view (in case new entries were
 			// intercepted while log window was hidden)
-			recycledListView.OnLogEntriesUpdated( true );
+			recycledListView.OnLogEntriesUpdated(true);
 
 			logWindowCanvasGroup.interactable = true;
 			logWindowCanvasGroup.blocksRaycasts = true;
@@ -463,7 +463,7 @@ namespace IngameDebugConsole
 			indicesOfListEntriesToShow.Clear();
 
 			recycledListView.DeselectSelectedLogItem();
-			recycledListView.OnLogEntriesUpdated( true );
+			recycledListView.OnLogEntriesUpdated(true);
 		}
 
 		// Collapse button is clicked
@@ -474,7 +474,7 @@ namespace IngameDebugConsole
 
 			snapToBottom = true;
 			collapseButton.color = isCollapseOn ? collapseButtonSelectedColor : collapseButtonNormalColor;
-			recycledListView.SetCollapseMode( isCollapseOn );
+			recycledListView.SetCollapseMode(isCollapseOn);
 
 			// Determine the new list of debug entries to show
 			FilterLogs();
@@ -485,7 +485,7 @@ namespace IngameDebugConsole
 		{
 			logFilter = logFilter ^ DebugLogFilter.Info;
 
-			if( ( logFilter & DebugLogFilter.Info ) == DebugLogFilter.Info )
+			if ((logFilter & DebugLogFilter.Info) == DebugLogFilter.Info)
 				filterInfoButton.color = filterButtonsSelectedColor;
 			else
 				filterInfoButton.color = filterButtonsNormalColor;
@@ -498,7 +498,7 @@ namespace IngameDebugConsole
 		{
 			logFilter = logFilter ^ DebugLogFilter.Warning;
 
-			if( ( logFilter & DebugLogFilter.Warning ) == DebugLogFilter.Warning )
+			if ((logFilter & DebugLogFilter.Warning) == DebugLogFilter.Warning)
 				filterWarningButton.color = filterButtonsSelectedColor;
 			else
 				filterWarningButton.color = filterButtonsNormalColor;
@@ -511,7 +511,7 @@ namespace IngameDebugConsole
 		{
 			logFilter = logFilter ^ DebugLogFilter.Error;
 
-			if( ( logFilter & DebugLogFilter.Error ) == DebugLogFilter.Error )
+			if ((logFilter & DebugLogFilter.Error) == DebugLogFilter.Error)
 				filterErrorButton.color = filterButtonsSelectedColor;
 			else
 				filterErrorButton.color = filterButtonsNormalColor;
@@ -522,17 +522,17 @@ namespace IngameDebugConsole
 		// Debug window is being resized,
 		// Set the sizeDelta property of the window accordingly while
 		// preventing window dimensions from going below the minimum dimensions
-		public void Resize( BaseEventData dat )
+		public void Resize(BaseEventData dat)
 		{
-			PointerEventData eventData = (PointerEventData) dat;
+			PointerEventData eventData = (PointerEventData)dat;
 
 			// Grab the resize button from top; 36f is the height of the resize button
-			float newHeight = ( eventData.position.y - logWindowTR.position.y ) / -canvasTR.localScale.y + 36f;
-			if( newHeight < minimumHeight )
+			float newHeight = (eventData.position.y - logWindowTR.position.y) / -canvasTR.localScale.y + 36f;
+			if (newHeight < minimumHeight)
 				newHeight = minimumHeight;
 
 			Vector2 anchorMin = logWindowTR.anchorMin;
-			anchorMin.y = Mathf.Max( 0f, 1f - newHeight / canvasTR.sizeDelta.y );
+			anchorMin.y = Mathf.Max(0f, 1f - newHeight / canvasTR.sizeDelta.y);
 			logWindowTR.anchorMin = anchorMin;
 
 			// Update the recycled list view
@@ -542,78 +542,78 @@ namespace IngameDebugConsole
 		// Determine the filtered list of debug entries to show on screen
 		private void FilterLogs()
 		{
-			if( logFilter == DebugLogFilter.None )
+			if (logFilter == DebugLogFilter.None)
 			{
 				// Show no entry
 				indicesOfListEntriesToShow.Clear();
 			}
-			else if( logFilter == DebugLogFilter.All )
+			else if (logFilter == DebugLogFilter.All)
 			{
-				if( isCollapseOn )
+				if (isCollapseOn)
 				{
 					// All the unique debug entries will be listed just once.
 					// So, list of debug entries to show is the same as the
 					// order these unique debug entries are added to collapsedLogEntries
 					indicesOfListEntriesToShow.Clear();
-					for( int i = 0; i < collapsedLogEntries.Count; i++ )
-						indicesOfListEntriesToShow.Add( i );
+					for (int i = 0; i < collapsedLogEntries.Count; i++)
+						indicesOfListEntriesToShow.Add(i);
 				}
 				else
 				{
 					indicesOfListEntriesToShow.Clear();
-					for( int i = 0; i < uncollapsedLogEntriesIndices.Count; i++ )
-						indicesOfListEntriesToShow.Add( uncollapsedLogEntriesIndices[i] );
+					for (int i = 0; i < uncollapsedLogEntriesIndices.Count; i++)
+						indicesOfListEntriesToShow.Add(uncollapsedLogEntriesIndices[i]);
 				}
 			}
 			else
 			{
 				// Show only the debug entries that match the current filter
-				bool isInfoEnabled = ( logFilter & DebugLogFilter.Info ) == DebugLogFilter.Info;
-				bool isWarningEnabled = ( logFilter & DebugLogFilter.Warning ) == DebugLogFilter.Warning;
-				bool isErrorEnabled = ( logFilter & DebugLogFilter.Error ) == DebugLogFilter.Error;
+				bool isInfoEnabled = (logFilter & DebugLogFilter.Info) == DebugLogFilter.Info;
+				bool isWarningEnabled = (logFilter & DebugLogFilter.Warning) == DebugLogFilter.Warning;
+				bool isErrorEnabled = (logFilter & DebugLogFilter.Error) == DebugLogFilter.Error;
 
-				if( isCollapseOn )
+				if (isCollapseOn)
 				{
 					indicesOfListEntriesToShow.Clear();
-					for( int i = 0; i < collapsedLogEntries.Count; i++ )
+					for (int i = 0; i < collapsedLogEntries.Count; i++)
 					{
 						DebugLogEntry logEntry = collapsedLogEntries[i];
-						if( logEntry.logTypeSpriteRepresentation == infoLog && isInfoEnabled )
-							indicesOfListEntriesToShow.Add( i );
-						else if( logEntry.logTypeSpriteRepresentation == warningLog && isWarningEnabled )
-							indicesOfListEntriesToShow.Add( i );
-						else if( logEntry.logTypeSpriteRepresentation == errorLog && isErrorEnabled )
-							indicesOfListEntriesToShow.Add( i );
+						if (logEntry.logTypeSpriteRepresentation == infoLog && isInfoEnabled)
+							indicesOfListEntriesToShow.Add(i);
+						else if (logEntry.logTypeSpriteRepresentation == warningLog && isWarningEnabled)
+							indicesOfListEntriesToShow.Add(i);
+						else if (logEntry.logTypeSpriteRepresentation == errorLog && isErrorEnabled)
+							indicesOfListEntriesToShow.Add(i);
 					}
 				}
 				else
 				{
 					indicesOfListEntriesToShow.Clear();
-					for( int i = 0; i < uncollapsedLogEntriesIndices.Count; i++ )
+					for (int i = 0; i < uncollapsedLogEntriesIndices.Count; i++)
 					{
 						DebugLogEntry logEntry = collapsedLogEntries[uncollapsedLogEntriesIndices[i]];
-						if( logEntry.logTypeSpriteRepresentation == infoLog && isInfoEnabled )
-							indicesOfListEntriesToShow.Add( uncollapsedLogEntriesIndices[i] );
-						else if( logEntry.logTypeSpriteRepresentation == warningLog && isWarningEnabled )
-							indicesOfListEntriesToShow.Add( uncollapsedLogEntriesIndices[i] );
-						else if( logEntry.logTypeSpriteRepresentation == errorLog && isErrorEnabled )
-							indicesOfListEntriesToShow.Add( uncollapsedLogEntriesIndices[i] );
+						if (logEntry.logTypeSpriteRepresentation == infoLog && isInfoEnabled)
+							indicesOfListEntriesToShow.Add(uncollapsedLogEntriesIndices[i]);
+						else if (logEntry.logTypeSpriteRepresentation == warningLog && isWarningEnabled)
+							indicesOfListEntriesToShow.Add(uncollapsedLogEntriesIndices[i]);
+						else if (logEntry.logTypeSpriteRepresentation == errorLog && isErrorEnabled)
+							indicesOfListEntriesToShow.Add(uncollapsedLogEntriesIndices[i]);
 					}
 				}
 			}
 
 			// Update the recycled list view
 			recycledListView.DeselectSelectedLogItem();
-			recycledListView.OnLogEntriesUpdated( true );
+			recycledListView.OnLogEntriesUpdated(true);
 
 			ValidateScrollPosition();
 		}
 
 		// Pool an unused log item
-		public void PoolLogItem( DebugLogItem logItem )
+		public void PoolLogItem(DebugLogItem logItem)
 		{
-			logItem.gameObject.SetActive( false );
-			pooledLogItems.Add( logItem );
+			logItem.gameObject.SetActive(false);
+			pooledLogItems.Add(logItem);
 		}
 
 
@@ -624,16 +624,16 @@ namespace IngameDebugConsole
 
 			// If pool is not empty, fetch a log item from the pool,
 			// create a new log item otherwise
-			if( pooledLogItems.Count > 0 )
+			if (pooledLogItems.Count > 0)
 			{
 				newLogItem = pooledLogItems[pooledLogItems.Count - 1];
-				pooledLogItems.RemoveAt( pooledLogItems.Count - 1 );
-				newLogItem.gameObject.SetActive( true );
+				pooledLogItems.RemoveAt(pooledLogItems.Count - 1);
+				newLogItem.gameObject.SetActive(true);
 			}
 			else
 			{
-				newLogItem = Instantiate<DebugLogItem>( logItemPrefab, logItemsContainer, false );
-				newLogItem.Initialize( recycledListView );
+				newLogItem = Instantiate<DebugLogItem>(logItemPrefab, logItemsContainer, false);
+				newLogItem.Initialize(recycledListView);
 			}
 
 			return newLogItem;

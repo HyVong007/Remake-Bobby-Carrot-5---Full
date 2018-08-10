@@ -14,12 +14,12 @@
 			size = 0;
 		}
 
-		public void Add( int index )
+		public void Add(int index)
 		{
-			if( size == indices.Length )
+			if (size == indices.Length)
 			{
 				int[] indicesNew = new int[size * 2];
-				System.Array.Copy( indices, 0, indicesNew, 0, size );
+				System.Array.Copy(indices, 0, indicesNew, 0, size);
 				indices = indicesNew;
 			}
 

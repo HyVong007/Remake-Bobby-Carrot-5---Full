@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using BobbyCarrot.Movers;
 
 
 namespace BobbyCarrot.Platforms
@@ -11,13 +12,42 @@ namespace BobbyCarrot.Platforms
 		public bool isOn { get; private set; }
 
 		[SerializeField] private Sprite yellowON, yellowOFF, pinkON, pinkOFF;
+		private Sprite ON, OFF;
+		public static readonly List<IButtonProcessor> yellowList = new List<IButtonProcessor>(), pinkList = new List<IButtonProcessor>();
 
-		public static readonly List<Box> yellowBoxs = new List<Box>(), pinkBoxs = new List<Box>();
 
-
-		public void ChangeState(bool ON_OFF)
+		private void Start()
 		{
-			throw new System.NotImplementedException();
+			if (isYellow)
+			{
+				ON = yellowON; OFF = yellowOFF; yellowList.Add(this);
+			}
+			else
+			{
+				ON = pinkON; OFF = pinkOFF; pinkList.Add(this);
+			}
+
+			spriteRenderer.sprite = isOn ? ON : OFF;
+		}
+
+
+		public void ChangeState() => spriteRenderer.sprite = (isOn = !isOn) ? ON : OFF;
+
+
+		public override bool CanEnter(Mover mover)
+		{
+			if (mover is Flyer) return true;
+			if (mover is LotusLeaf || mover is MobileCloud) return false;
+			return !isOn;
+		}
+
+
+		static Box()
+		{
+			Board.onReset += () =>
+			  {
+				  yellowList.Clear(); pinkList.Clear();
+			  };
 		}
 	}
 }

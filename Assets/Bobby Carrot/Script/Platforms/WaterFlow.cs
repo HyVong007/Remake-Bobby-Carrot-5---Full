@@ -11,7 +11,7 @@ namespace BobbyCarrot.Platforms
 		public static readonly List<WaterFlow> list = new List<WaterFlow>();
 
 
-		public void ChangeState(bool ON_OFF)
+		public void ChangeState()
 		{
 			throw new System.NotImplementedException();
 		}

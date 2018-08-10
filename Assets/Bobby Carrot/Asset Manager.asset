@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d105c3388df0c534d81552aef33cc698, type: 3}
+  m_Name: Asset Manager
+  m_EditorClassIdentifier: 
+  animStar: {fileID: 0}
+  animWater: {fileID: 0}
+  animWaterFall: {fileID: 0}
+  animEnd: {fileID: 0}
+  prefab:
+    normal: {fileID: 0}
+    snow: {fileID: 0}
+    waterFlow: {fileID: 0}
+    slipperyIce: {fileID: 0}
+    item: {fileID: 0}
+    grassMowerStop: {fileID: 0}
+    railRoadButton: {fileID: 0}
+    mazeButton: {fileID: 0}
+    WaterFlowButton: {fileID: 0}

@@ -18,7 +18,7 @@ namespace BobbyCarrot.Platforms
 		}
 
 
-		public void ChangeState(bool ON_OFF)
+		public void ChangeState()
 		{
 			throw new System.NotImplementedException();
 		}

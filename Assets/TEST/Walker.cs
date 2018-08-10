@@ -20,7 +20,7 @@ namespace Test
 			DISAPPEAR = Animator.StringToHash("disappear"),
 			SCRATCH = Animator.StringToHash("scratch");
 
-		
+
 		private void Update()
 		{
 			if (direction == Vector2Int.zero)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BobbyCarrot.Movers;
+using UnityEngine;
 
 
 namespace BobbyCarrot.Platforms
@@ -14,6 +15,56 @@ namespace BobbyCarrot.Platforms
 		public enum State
 		{
 			LEAF, HOLE, CARROT
+		}
+
+
+		private void Start()
+		{
+			spriteRenderer.sprite = sprites[state];
+			if (state != State.HOLE) ++countDown;
+		}
+
+
+		public override bool CanEnter(Mover mover)
+		{
+			if (mover is LotusLeaf || mover is MobileCloud) return false;
+			switch (state)
+			{
+				case State.HOLE: return true;
+				case State.LEAF: return !(mover is Walker);
+				case State.CARROT: return !(mover is GrassMower);
+
+				default: return false;
+			}
+		}
+
+
+		public override void OnEnter(Mover mover)
+		{
+			if (mover is Flyer || mover is FireBall) return;
+			switch (state)
+			{
+				case State.HOLE: return;
+				case State.LEAF:
+					state = State.CARROT;
+					spriteRenderer.sprite = sprites[State.CARROT];
+					// Anim
+					return;
+
+				case State.CARROT:
+					state = State.HOLE;
+					spriteRenderer.sprite = sprites[State.HOLE];
+					--countDown;
+
+					// Check countDown and change NormalGround (End)
+					return;
+			}
+		}
+
+
+		static Carrot()
+		{
+			Board.onReset += () => countDown = 0;
 		}
 	}
 }

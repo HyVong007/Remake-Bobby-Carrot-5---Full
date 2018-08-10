@@ -34,6 +34,15 @@ namespace BobbyCarrot.Platforms
 
 
 		public virtual void OnEnter(Mover mover) { }
+
+
+		static Platform()
+		{
+			Board.onReset += () =>
+			  {
+				  // reset array
+			  };
+		}
 	}
 
 
@@ -47,12 +56,13 @@ namespace BobbyCarrot.Platforms
 		void OnExit(Mover mover);
 
 		void OnEnter(Mover mover);
+
 	}
 
 
 
 	public interface IButtonProcessor
 	{
-		void ChangeState(bool ON_OFF);
+		void ChangeState();
 	}
 }

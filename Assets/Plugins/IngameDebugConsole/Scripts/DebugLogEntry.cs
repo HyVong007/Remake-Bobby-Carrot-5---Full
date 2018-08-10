@@ -20,7 +20,7 @@ namespace IngameDebugConsole
 
 		private int hashValue = HASH_NOT_CALCULATED;
 
-		public DebugLogEntry( string logString, string stackTrace, Sprite sprite )
+		public DebugLogEntry(string logString, string stackTrace, Sprite sprite)
 		{
 			this.logString = logString;
 			this.stackTrace = stackTrace;
@@ -31,7 +31,7 @@ namespace IngameDebugConsole
 		}
 
 		// Check if two entries have the same origin
-		public bool Equals( DebugLogEntry other )
+		public bool Equals(DebugLogEntry other)
 		{
 			return this.logString == other.logString && this.stackTrace == other.stackTrace;
 		}
@@ -39,8 +39,8 @@ namespace IngameDebugConsole
 		// Return a string containing complete information about this debug entry
 		public override string ToString()
 		{
-			if( completeLog == null )
-				completeLog = string.Concat( logString, "\n", stackTrace );
+			if (completeLog == null)
+				completeLog = string.Concat(logString, "\n", stackTrace);
 
 			return completeLog;
 		}
@@ -48,7 +48,7 @@ namespace IngameDebugConsole
 		// Credit: https://stackoverflow.com/a/19250516/2373034
 		public override int GetHashCode()
 		{
-			if( hashValue == HASH_NOT_CALCULATED )
+			if (hashValue == HASH_NOT_CALCULATED)
 			{
 				unchecked
 				{

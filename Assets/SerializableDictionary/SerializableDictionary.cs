@@ -22,8 +22,8 @@ public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : 
 			this[kvp.Key] = kvp.Value;
 		}
 	}
-	
-	protected SerializableDictionaryBase(SerializationInfo info, StreamingContext context) : base(info,context){}
+
+	protected SerializableDictionaryBase(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
 	protected abstract void SetValue(TValueStorage[] storage, int i, TValue value);
 	protected abstract TValue GetValue(TValueStorage[] storage, int i);
@@ -39,11 +39,11 @@ public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : 
 
 	public void OnAfterDeserialize()
 	{
-		if(m_keys != null && m_values != null && m_keys.Length == m_values.Length)
+		if (m_keys != null && m_values != null && m_keys.Length == m_values.Length)
 		{
 			this.Clear();
 			int n = m_keys.Length;
-			for(int i = 0; i < n; ++i)
+			for (int i = 0; i < n; ++i)
 			{
 				this[m_keys[i]] = GetValue(m_values, i);
 			}
@@ -61,7 +61,7 @@ public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : 
 		m_values = new TValueStorage[n];
 
 		int i = 0;
-		foreach(var kvp in this)
+		foreach (var kvp in this)
 		{
 			m_keys[i] = kvp.Key;
 			SetValue(m_values, i, kvp.Value);
@@ -80,7 +80,7 @@ public class SerializableDictionary<TKey, TValue> : SerializableDictionaryBase<T
 	{
 	}
 
-	protected SerializableDictionary(SerializationInfo info, StreamingContext context) : base(info,context){}
+	protected SerializableDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
 	protected override TValue GetValue(TValue[] storage, int i)
 	{
@@ -111,7 +111,7 @@ public class SerializableDictionary<TKey, TValue, TValueStorage> : SerializableD
 	{
 	}
 
-	protected SerializableDictionary(SerializationInfo info, StreamingContext context) : base(info,context){}
+	protected SerializableDictionary(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
 	protected override TValue GetValue(TValueStorage[] storage, int i)
 	{
