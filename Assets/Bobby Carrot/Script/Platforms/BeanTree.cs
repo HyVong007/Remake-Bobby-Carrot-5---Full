@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Threading.Tasks;
-using BobbyCarrot.Movers;
 
 
 namespace BobbyCarrot.Platforms
 {
-	public class DragonController : MonoBehaviour
+	public class BeanTree : Platform
 	{
-		public static DragonController instance { get; private set; }
+		public static BeanTree instance { get; private set; }
 
 
 		private void Awake()
@@ -21,9 +20,15 @@ namespace BobbyCarrot.Platforms
 		}
 
 
-		public async Task Fire(NormalObstacle dragonHead)
+		public async Task PlantTree(NormalGround beanTreeGarden)
 		{
 			throw new System.NotImplementedException();
+		}
+
+
+		public static new BeanTree DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
 		}
 	}
 }

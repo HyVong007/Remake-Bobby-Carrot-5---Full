@@ -43,5 +43,11 @@ namespace BobbyCarrot.Platforms
 		{
 			Board.onReset += () => countDown = 0;
 		}
+
+
+		public static new EasterEgg DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

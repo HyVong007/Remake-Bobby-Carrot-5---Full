@@ -66,5 +66,11 @@ namespace BobbyCarrot.Platforms
 		{
 			Board.onReset += () => countDown = 0;
 		}
+
+
+		public static new Carrot DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

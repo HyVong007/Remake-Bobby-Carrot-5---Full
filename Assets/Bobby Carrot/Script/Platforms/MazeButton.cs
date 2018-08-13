@@ -11,5 +11,11 @@ namespace BobbyCarrot.Platforms
 		public static readonly List<MazeButton> list = new List<MazeButton>();
 
 		[SerializeField] private Sprite ONSprite, OFFSprite;
+
+
+		public static new MazeButton DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

@@ -11,5 +11,11 @@ namespace BobbyCarrot.Platforms
 		public static readonly List<RailRoadButton> list = new List<RailRoadButton>();
 
 		[SerializeField] private Sprite ONSprite, OFFSprite;
+
+
+		public static new RailRoadButton DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

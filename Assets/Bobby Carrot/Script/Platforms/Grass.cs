@@ -1,4 +1,5 @@
 ﻿using BobbyCarrot.Movers;
+using UnityEngine;
 
 
 namespace BobbyCarrot.Platforms
@@ -16,6 +17,12 @@ namespace BobbyCarrot.Platforms
 			// Remove this out of Platform array list
 			// Anim
 			Destroy(gameObject, 2f);
+		}
+
+
+		public static new Grass DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
 		}
 	}
 }

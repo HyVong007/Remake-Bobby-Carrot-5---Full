@@ -16,5 +16,21 @@ namespace BobbyCarrot.Movers
 
 		[SerializeField] private SpriteRenderer _spriteRenderer;
 		[SerializeField] private Animator _animator;
+
+
+		public abstract void Use(Vector3Int? pos = null);
+
+
+		public static Mover DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			Mover mover = null;
+			if (ID == 236)
+				mover = LotusLeaf.DeSerialize(ID, wPos, use);
+
+			else if (224 <= ID && ID <= 226)
+				mover = MobileCloud.DeSerialize(ID, wPos, use);
+
+			return mover;
+		}
 	}
 }

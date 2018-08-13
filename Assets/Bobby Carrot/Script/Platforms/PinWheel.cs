@@ -35,5 +35,11 @@ namespace BobbyCarrot.Platforms
 		{
 			throw new System.NotImplementedException();
 		}
+
+
+		public static new PinWheel DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

@@ -49,5 +49,11 @@ namespace BobbyCarrot.Platforms
 			f();
 			Board.onReset += f;
 		}
+
+
+		public static new Item DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

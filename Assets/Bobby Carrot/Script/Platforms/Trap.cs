@@ -8,5 +8,11 @@ namespace BobbyCarrot.Platforms
 		public bool isOn { get; private set; }
 
 		[SerializeField] private Sprite ONSprite, OFFSprite;
+
+
+		public static new Trap DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

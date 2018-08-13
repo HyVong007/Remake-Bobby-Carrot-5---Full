@@ -23,20 +23,34 @@ public class NameSpritesAutomatically : MonoBehaviour
 
 		int ID = 0;
 
-		for (int i = 0; i < myTexture.width; i += SliceWidth)
+		/*for (int x = 0; x < myTexture.width; x += SliceWidth)
 		{
-			for (int j = myTexture.height; j > 0; j -= SliceHeight)
+			for (int y = myTexture.height; y > 0; y -= SliceHeight)
 			{
 				SpriteMetaData smd = new SpriteMetaData();
 				smd.pivot = new Vector2(0.5f, 0.5f);
 				smd.alignment = 9;
 				//smd.name = (myTexture.height - j) / SliceHeight + ", " + i / SliceWidth;
 				smd.name = (ID++).ToString();
-				smd.rect = new Rect(i, j - SliceHeight, SliceWidth, SliceHeight);
+				smd.rect = new Rect(x, y - SliceHeight, SliceWidth, SliceHeight);
 
 				newData.Add(smd);
 			}
-		}
+		}*/
+
+		for (int y = myTexture.height; y > 0; y -= SliceHeight)
+			for (int x = 0; x < myTexture.width; x += SliceWidth)
+			{
+				SpriteMetaData smd = new SpriteMetaData();
+				smd.pivot = new Vector2(0.5f, 0.5f);
+				smd.alignment = 9;
+				smd.name = (ID++).ToString();
+				smd.rect = new Rect(x, y - SliceHeight, SliceWidth, SliceHeight);
+
+				newData.Add(smd);
+			}
+
+
 
 		ti.spritesheet = newData.ToArray();
 		AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);

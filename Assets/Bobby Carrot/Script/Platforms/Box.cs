@@ -49,5 +49,11 @@ namespace BobbyCarrot.Platforms
 				  yellowList.Clear(); pinkList.Clear();
 			  };
 		}
+
+
+		public static new Box DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

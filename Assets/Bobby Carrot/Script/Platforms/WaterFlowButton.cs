@@ -11,5 +11,11 @@ namespace BobbyCarrot.Platforms
 		[SerializeField] private Sprite ONSprite, OFFSprite;
 
 		public static readonly List<WaterFlowButton> list = new List<WaterFlowButton>();
+
+
+		public static new WaterFlowButton DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

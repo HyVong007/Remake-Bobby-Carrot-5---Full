@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Tilemaps;
 using BobbyCarrot.Platforms;
 using BobbyCarrot.Movers;
 
@@ -44,7 +45,7 @@ namespace BobbyCarrot
 			public Locker locker;
 			public PinWheel pinWheel;
 			public Wood wood;
-			public BeanTreeController beanTreeController;
+			public BeanTree beanTree;
 			public MobileCloud mobileCloud;
 			public IcyBlock icyBlock;
 			public LotusLeaf lotusLeaf;
@@ -57,12 +58,17 @@ namespace BobbyCarrot
 			[System.Serializable]
 			public struct Levels
 			{
-				public Level testLevel;
+				public Level testLevel, empty;
 			}
 			public Levels levels;
 		}
 		public Prefab prefab;
 
-
+		[System.Serializable]
+		public struct MyTile
+		{
+			public Tile[] platforms;
+		}
+		public MyTile myTile;
 	}
 }

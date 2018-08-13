@@ -7,5 +7,11 @@ namespace BobbyCarrot.Platforms
 	{
 		public bool isStop { get; private set; }
 		[SerializeField] Sprite windSource, windStop;
+
+
+		public static new Wind DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

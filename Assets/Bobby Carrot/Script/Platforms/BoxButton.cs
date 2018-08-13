@@ -40,5 +40,11 @@ namespace BobbyCarrot.Platforms
 			var list = isYellow ? Box.yellowList : Box.pinkList;
 			foreach (var box in list) box.ChangeState();
 		}
+
+
+		public static new BoxButton DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

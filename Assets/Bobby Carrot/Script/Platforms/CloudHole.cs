@@ -11,5 +11,11 @@ namespace BobbyCarrot.Platforms
 		public MobileCloud mobileCloud { get; private set; }
 
 		[SerializeField] PinWheelColor_Sprite_Dict sprites;
+
+
+		public static new CloudHole DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

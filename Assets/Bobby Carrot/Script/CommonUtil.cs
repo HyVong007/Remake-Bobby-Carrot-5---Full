@@ -13,7 +13,7 @@ namespace BobbyCarrot
 
 		public static void Init()
 		{
-			//origin = new Vector3(-Map.instance.terrainArray.Length, -Map.instance.terrainArray[0].Length, 0f) * 0.5f;
+			origin = new Vector3(-Level.instance.middleArray.Length, -Level.instance.middleArray[0].Length, 0f) * 0.5f;
 		}
 
 

@@ -12,5 +12,11 @@ namespace BobbyCarrot.Platforms
 			NORMAL, SKY, ANIM_STAR, WATER, ANIM_WATER, WATER_FALL,
 			DRAGON_HEAD, DRAGON_BODY, DRAGON_TAIL
 		}
+
+
+		public static new NormalObstacle DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
+		}
 	}
 }

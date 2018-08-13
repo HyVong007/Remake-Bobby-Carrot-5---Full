@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace BobbyCarrot.Platforms
 {
-	public class BeanTreeController : MonoBehaviour
+	public class Dragon : Platform
 	{
-		public static BeanTreeController instance { get; private set; }
+		public static Dragon instance { get; private set; }
 
 
 		private void Awake()
@@ -20,9 +20,15 @@ namespace BobbyCarrot.Platforms
 		}
 
 
-		public async Task PlantTree(NormalGround beanTreeGarden)
+		public async Task Fire(NormalObstacle dragonHead)
 		{
 			throw new System.NotImplementedException();
+		}
+
+
+		public static new Dragon DeSerialize(int ID, Vector3 wPos, bool use = true)
+		{
+			return null;
 		}
 	}
 }
