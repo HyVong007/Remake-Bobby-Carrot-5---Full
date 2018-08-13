@@ -41,15 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Bottom Map
-    uniqueID: 1242743139
+  - name: Bottom
+    uniqueID: 1406001259
     locked: 0
-  - name: Top Map
-    uniqueID: 1215578645
+  - name: Middle
+    uniqueID: 1873255195
+    locked: 0
+  - name: Top
+    uniqueID: 448786175
     locked: 0
   - name: Mover
-    uniqueID: 1252956259
+    uniqueID: 1928404629
     locked: 0
-  - name: UI Map
-    uniqueID: 2989968203
+  - name: UI
+    uniqueID: 1123279377
     locked: 0

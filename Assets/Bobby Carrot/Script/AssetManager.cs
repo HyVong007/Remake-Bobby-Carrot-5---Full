@@ -9,14 +9,20 @@ namespace BobbyCarrot
 	[CreateAssetMenu]
 	public class AssetManager : ScriptableObject
 	{
-		public RuntimeAnimatorController animStar, animWater, animWaterFall, animEnd;
+		[System.Serializable]
+		public struct Anim
+		{
+			public RuntimeAnimatorController star, water, waterFall, end;
+		}
+		public Anim anim;
 
 		[System.Serializable]
 		public struct Prefab
 		{
 			// Platform
 
-			public GameObject normal;
+			public NormalObstacle normalObstacle;
+			public NormalGround normalGround;
 			public Snow snow;
 			public WaterFlow waterFlow;
 			public SlipperyIce slipperyIce;

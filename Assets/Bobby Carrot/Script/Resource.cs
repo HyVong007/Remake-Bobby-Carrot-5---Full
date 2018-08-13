@@ -28,5 +28,8 @@ namespace BobbyCarrot
 		public static AssetManager asset => Resource.instance?.assetManager;
 
 		public static Camera camera => Resource.instance?.camera;
+
+		public const string BOTTOM_LAYER = "Bottom", MIDDLE_LAYER = "Middle", TOP_LAYER = "Top",
+			MOVER_LAYER = "Mover", UI_LAYER = "UI";
 	}
 }

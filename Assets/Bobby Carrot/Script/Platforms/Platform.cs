@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using BobbyCarrot.Movers;
+using System.IO;
 
 
 namespace BobbyCarrot.Platforms
@@ -8,6 +9,8 @@ namespace BobbyCarrot.Platforms
 	[RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
 	public abstract class Platform : MonoBehaviour, IPlatformProcessor
 	{
+		protected int ID;
+
 		public static List<IPlatformProcessor>[][] array;
 
 		public SpriteRenderer spriteRenderer => _spriteRenderer;
@@ -50,6 +53,21 @@ namespace BobbyCarrot.Platforms
 			  {
 				  // reset array
 			  };
+		}
+
+
+		public static byte[] Serialize(object _obj)
+		{
+			var obj = (Platform)_obj;
+			using (MemoryStream m = new MemoryStream())
+			using (BinaryWriter w = new BinaryWriter(m))
+			{
+				w.Write(obj.ID);
+				var pos = obj.transform.position;
+				w.Write(pos.x); w.Write(pos.y); w.Write(pos.z);
+
+				return m.ToArray();
+			}
 		}
 
 
@@ -131,14 +149,8 @@ namespace BobbyCarrot.Platforms
 			else if (215 <= ID && ID <= 217)
 				platform = Dragon.DeSerialize(ID, wPos, use);
 
-			//else if (224<=ID&&ID<=226)
-			// MobileCloud
-
 			else if (ID == 227)
 				platform = IcyBlock.DeSerialize(ID, wPos, use);
-
-			//else if (ID == 236)
-			// Lotus Leaf
 
 			else if (ID == 237)
 				platform = Rock.DeSerialize(ID, wPos, use);
@@ -150,6 +162,25 @@ namespace BobbyCarrot.Platforms
 				platform = Wind.DeSerialize(ID, wPos, use);
 
 			return platform;
+		}
+
+
+		public static Platform DeSerialize(byte[] data)
+		{
+			int ID; Vector3 wPos;
+			DeSerialize(data, out ID, out wPos);
+			return DeSerialize(ID, wPos, false);
+		}
+
+
+		protected static void DeSerialize(byte[] data, out int ID, out Vector3 wPos)
+		{
+			using (MemoryStream m = new MemoryStream(data))
+			using (BinaryReader r = new BinaryReader(m))
+			{
+				ID = r.ReadInt32();
+				wPos = new Vector3(r.ReadSingle(), r.ReadSingle(), r.ReadSingle());
+			}
 		}
 	}
 

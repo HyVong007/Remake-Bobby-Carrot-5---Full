@@ -22,28 +22,41 @@ namespace BobbyCarrot
 			}
 
 			CommonUtil.Init();
-			onReset();
+			//onReset();
 		}
 
 
 		private void Start()
 		{
 			var level = Level.instance;
+			bool hasBottom = level.bottomArray != null;
 			var size = new Vector2Int(level.middleArray.Length, level.middleArray[0].Length);
 			var index = new Vector3Int();
-			bool hasBottom = level.bottomArray != null;
+
 			for (index.x = 0; index.x < size.x; ++index.x)
 				for (index.y = 0; index.y < size.y; ++index.y)
 				{
 					// Deserialize Platforms
 					var wPos = index.ArrayToWorld();
-					var platform = Platform.DeSerialize(level.topArray[index.x][index.y], wPos);
-					platform = Platform.DeSerialize(level.middleArray[index.x][index.y], wPos);
-					if (hasBottom) platform = Platform.DeSerialize(level.bottomArray[index.x][index.y], wPos);
+					Platform platform = null;
+
+					int ID = level.topArray[index.x][index.y];
+					if (ID != -1) platform = Platform.DeSerialize(ID, wPos);
+
+					ID = level.middleArray[index.x][index.y];
+					if (ID != -1) platform = Platform.DeSerialize(ID, wPos);
+
+					if (hasBottom)
+					{
+						ID = level.bottomArray[index.x][index.y];
+						if (ID != -1) platform = Platform.DeSerialize(ID, wPos);
+					}
 
 					// Deserialze Movers
-					var mover = hasBottom ? Mover.DeSerialize(level.middleArray[index.x][index.y], wPos) :
-						Mover.DeSerialize(level.topArray[index.x][index.y], wPos);
+					Mover mover = null;
+					if (hasBottom) ID = level.middleArray[index.x][index.y];
+					else ID = level.topArray[index.x][index.y];
+					if (ID != -1) mover = Mover.DeSerialize(ID, wPos);
 				}
 		}
 	}

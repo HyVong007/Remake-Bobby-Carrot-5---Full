@@ -11,12 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d105c3388df0c534d81552aef33cc698, type: 3}
   m_Name: Asset Manager
   m_EditorClassIdentifier: 
-  animStar: {fileID: 0}
-  animWater: {fileID: 0}
-  animWaterFall: {fileID: 0}
+  animStar: {fileID: 9100000, guid: 0113beb41dace2442868b1a1299c2ec7, type: 2}
+  animWater: {fileID: 9100000, guid: 5f730dd5ea739804493efe5e85cce65b, type: 2}
+  animWaterFall: {fileID: 9100000, guid: abfea8b2249493a42bfce79e3f20ea56, type: 2}
   animEnd: {fileID: 0}
   prefab:
-    normal: {fileID: 0}
+    normalObstacle: {fileID: 114894063026292308, guid: 5b585c18e8e6baf4b8bbc078186e0c01,
+      type: 2}
+    normalGround: {fileID: 0}
     snow: {fileID: 0}
     waterFlow: {fileID: 0}
     slipperyIce: {fileID: 0}
@@ -39,7 +41,7 @@ MonoBehaviour:
     locker: {fileID: 0}
     pinWheel: {fileID: 0}
     wood: {fileID: 0}
-    beanTreeController: {fileID: 0}
+    beanTree: {fileID: 0}
     mobileCloud: {fileID: 0}
     icyBlock: {fileID: 0}
     lotusLeaf: {fileID: 0}
@@ -48,6 +50,8 @@ MonoBehaviour:
     wind: {fileID: 0}
     levels:
       testLevel: {fileID: 0}
+      empty: {fileID: 114706028323863502, guid: 75c18f83723a1a84bbabe3dc2f68b39e,
+        type: 2}
   myTile:
     platforms:
     - {fileID: 11400000, guid: a38d5559f14f2004587805c239b2b4a5, type: 2}
