@@ -53,11 +53,5 @@ namespace BobbyCarrot.Movers
 				animator.SetInteger(DIR_Y, 0);
 			}
 		}
-
-
-		public override void Use(Vector3Int? pos = null)
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

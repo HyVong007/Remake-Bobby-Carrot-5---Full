@@ -16,9 +16,7 @@ namespace BobbyCarrot.Platforms
 
 		public static new NormalObstacle DeSerialize(int ID, Vector3 wPos, bool use = true)
 		{
-			var obj = Instantiate(R.asset.prefab.normalObstacle, wPos, Quaternion.identity);
-			obj.ID = ID;
-			obj.spriteRenderer.sprite = R.asset.myTile.platforms[ID].sprite;
+			var obj = New(ID, wPos, R.asset.prefab.normalObstacle);
 
 			if (71 <= ID && ID <= 76)
 			{
@@ -37,6 +35,7 @@ namespace BobbyCarrot.Platforms
 				if (249 <= ID && ID <= 254) obj.spriteRenderer.sortingLayerName = R.MIDDLE_LAYER;
 			}
 
+			if (use) obj.Use();
 			return obj;
 		}
 
@@ -59,7 +58,7 @@ namespace BobbyCarrot.Platforms
 			{
 				case Name.NORMAL: return false;
 				case Name.SKY: return mover is MobileCloud;
-				case Name.WATER: return false;
+				case Name.WATER: return mover is LotusLeaf;
 			}
 
 			return false;

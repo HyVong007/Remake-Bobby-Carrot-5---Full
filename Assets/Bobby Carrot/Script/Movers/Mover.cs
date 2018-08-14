@@ -18,9 +18,6 @@ namespace BobbyCarrot.Movers
 		[SerializeField] private Animator _animator;
 
 
-		public abstract void Use(Vector3Int? pos = null);
-
-
 		public static Mover DeSerialize(int ID, Vector3 wPos, bool use = true)
 		{
 			Mover mover = null;

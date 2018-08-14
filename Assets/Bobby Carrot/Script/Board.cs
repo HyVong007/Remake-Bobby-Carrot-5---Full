@@ -38,18 +38,18 @@ namespace BobbyCarrot
 				{
 					// Deserialize Platforms
 					var wPos = index.ArrayToWorld();
-					Platform platform = null;
+					Platform bottomPlatform = null, middlePlatform = null, topPlatform = null;
 
 					int ID = level.topArray[index.x][index.y];
-					if (ID != -1) platform = Platform.DeSerialize(ID, wPos);
+					if (ID != -1) topPlatform = Platform.DeSerialize(ID, wPos);
 
 					ID = level.middleArray[index.x][index.y];
-					if (ID != -1) platform = Platform.DeSerialize(ID, wPos);
+					if (ID != -1) middlePlatform = Platform.DeSerialize(ID, wPos);
 
 					if (hasBottom)
 					{
 						ID = level.bottomArray[index.x][index.y];
-						if (ID != -1) platform = Platform.DeSerialize(ID, wPos);
+						if (ID != -1) bottomPlatform = Platform.DeSerialize(ID, wPos);
 					}
 
 					// Deserialze Movers

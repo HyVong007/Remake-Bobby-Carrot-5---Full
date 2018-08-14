@@ -7,7 +7,7 @@ using System.IO;
 namespace BobbyCarrot.Platforms
 {
 	[RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
-	public abstract class Platform : MonoBehaviour, IPlatformProcessor
+	public abstract class Platform : MonoBehaviour, IPlatformProcessor, IUsable
 	{
 		protected int ID;
 
@@ -182,6 +182,15 @@ namespace BobbyCarrot.Platforms
 				wPos = new Vector3(r.ReadSingle(), r.ReadSingle(), r.ReadSingle());
 			}
 		}
+
+
+		protected static T New<T>(int ID, Vector3 wPos, T prefab) where T : Platform
+		{
+			T obj = Instantiate(prefab, wPos, Quaternion.identity);
+			obj.ID = ID;
+			obj.spriteRenderer.sprite = R.asset.myTile.platforms[ID].sprite;
+			return obj;
+		}
 	}
 
 
@@ -202,5 +211,11 @@ namespace BobbyCarrot.Platforms
 	public interface IButtonProcessor
 	{
 		void ChangeState();
+	}
+
+
+	public interface IUsable
+	{
+		void Use(Vector3Int? pos = null);
 	}
 }

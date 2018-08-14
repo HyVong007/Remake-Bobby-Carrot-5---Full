@@ -86,11 +86,5 @@ namespace BobbyCarrot.Movers
 				}
 			}
 		}
-
-
-		public override void Use(Vector3Int? pos = null)
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }
