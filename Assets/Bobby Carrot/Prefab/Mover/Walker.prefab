@@ -72,10 +72,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
-  speed: 0.2
+  speed: 0.05
   _spriteRenderer: {fileID: 212298231559046758}
   _animator: {fileID: 95440214065450308}
-  relaxDelaySeconds: 5
+  relaxDelaySeconds: 3
 --- !u!212 &212298231559046758
 SpriteRenderer:
   m_ObjectHideFlags: 1

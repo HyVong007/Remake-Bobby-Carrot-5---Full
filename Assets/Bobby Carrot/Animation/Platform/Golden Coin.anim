@@ -3,7 +3,7 @@
 --- !u!74 &7400000
 AnimationClip:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Golden Coin
   serializedVersion: 6
@@ -19,10 +19,16 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
+      value: {fileID: 21301008, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - time: 0.41666666
+      value: {fileID: 21301008, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - time: 0.8333333
+      value: {fileID: 21301008, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - time: 1.5
       value: {fileID: 21300096, guid: e7911623c06921145b73c87217f893a4, type: 3}
-    - time: 0.083333336
+    - time: 1.5833334
       value: {fileID: 21300008, guid: e7911623c06921145b73c87217f893a4, type: 3}
-    - time: 0.16666667
+    - time: 1.6666666
       value: {fileID: 21300038, guid: e7911623c06921145b73c87217f893a4, type: 3}
     attribute: m_Sprite
     path: 
@@ -43,6 +49,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
+    - {fileID: 21301008, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21301008, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21301008, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
     - {fileID: 21300096, guid: e7911623c06921145b73c87217f893a4, type: 3}
     - {fileID: 21300008, guid: e7911623c06921145b73c87217f893a4, type: 3}
     - {fileID: 21300038, guid: e7911623c06921145b73c87217f893a4, type: 3}
@@ -51,7 +60,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 1.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

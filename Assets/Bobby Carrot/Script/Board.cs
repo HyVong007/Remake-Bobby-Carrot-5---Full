@@ -67,7 +67,6 @@ namespace BobbyCarrot
 				}
 
 			startGame = false;
-			print("Array width= " + Platform.array.Length + ", Height= " + Platform.array[0].Length);
 		}
 
 

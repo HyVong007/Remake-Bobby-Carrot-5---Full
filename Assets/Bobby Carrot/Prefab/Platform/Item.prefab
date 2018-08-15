@@ -49,9 +49,9 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1127591012823022}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 22e83860f8dd53c40a915d9ae518c9d5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -74,8 +74,21 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 212217193744432960}
   _animator: {fileID: 95288922248980852}
   sprites:
-    m_keys: 
-    m_values: []
+    m_keys: 000102030405060708090a0b0c
+    m_values:
+    - {fileID: 21300814, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300816, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300818, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300820, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300822, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300824, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300826, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300830, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300926, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300954, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300998, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21301004, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21301008, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
 --- !u!212 &212217193744432960
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -12,7 +12,8 @@ namespace BobbyCarrot
 		[System.Serializable]
 		public struct Anim
 		{
-			public RuntimeAnimatorController star, water, waterFall, end;
+			public RuntimeAnimatorController star, water, waterFall, end,
+				goldenCoin;
 		}
 		public Anim anim;
 

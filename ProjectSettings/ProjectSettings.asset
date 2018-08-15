@@ -551,11 +551,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Remake Bobby Carrot 5 - Full
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: Tam
+  metroCertificateIssuer: Tam
+  metroCertificateNotAfter: 80cd1f39b153d501
   metroApplicationDescription: Remake Bobby Carrot 5 - Full
   wsaImages: {}
   metroTileShortName: 

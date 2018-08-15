@@ -16,6 +16,7 @@ MonoBehaviour:
     water: {fileID: 0}
     waterFall: {fileID: 0}
     end: {fileID: 0}
+    goldenCoin: {fileID: 0}
   prefab:
     normalObstacle: {fileID: 114894063026292308, guid: 5b585c18e8e6baf4b8bbc078186e0c01,
       type: 2}
@@ -24,7 +25,7 @@ MonoBehaviour:
     snow: {fileID: 0}
     waterFlow: {fileID: 0}
     slipperyIce: {fileID: 0}
-    item: {fileID: 0}
+    item: {fileID: 114912889975238766, guid: 8cbfaf299f551d349926b17993285824, type: 2}
     grassMowerStop: {fileID: 0}
     button:
       railRoad: {fileID: 0}

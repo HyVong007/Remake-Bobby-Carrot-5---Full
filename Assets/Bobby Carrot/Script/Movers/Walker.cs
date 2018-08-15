@@ -66,16 +66,25 @@ namespace BobbyCarrot.Movers
 					animator.SetInteger(RELAX_STATE, idleDirections[direction]);
 
 				var pos = transform.position.WorldToArray();
-				var platform = Platform.array[pos.x][pos.y].Peek();
+				var nextPos = pos + direction;
 
-				if (!platform.CanExit(this) || !platform.CanEnter(this))
+				bool canGo = false;
+				if (0 <= nextPos.x && nextPos.x < Platform.array.Length && 0 <= nextPos.y && nextPos.y < Platform.array[0].Length)
+				{
+					var currentPlatform = Platform.array[pos.x][pos.y].Peek();
+					var nextPlatform = Platform.array[nextPos.x][nextPos.y].Peek();
+					if (currentPlatform.CanExit(this) && nextPlatform.CanEnter(this))
+					{
+						// Platform processes the mover
+						canGo = true;
+						RunPlatform(currentPlatform, nextPlatform);
+					}
+				}
+
+				if (!canGo)
 				{
 					// Mover cannot go
-				}
-				else
-				{
-					// Platform processes the mover
-					DoPlatformJobs(platform);
+					direction = Vector3Int.zero;
 				}
 			}
 		}
@@ -138,13 +147,13 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		private async void DoPlatformJobs(IPlatformProcessor platform)
+		private async void RunPlatform(IPlatformProcessor currentPlatform, IPlatformProcessor nextPlatform)
 		{
-			await platform.OnExit(this);
+			await currentPlatform.OnExit(this);
 			if (!receiveInput) return;
 
 			await Move();
-			await platform.OnEnter(this);
+			await nextPlatform.OnEnter(this);
 			if (!receiveInput) return;
 
 			direction = Vector3Int.zero;
@@ -155,10 +164,6 @@ namespace BobbyCarrot.Movers
 
 		public async Task Move()
 		{
-			var index = transform.position.WorldToArray() + direction;
-			print("index= " + index);
-			if (index.x < 0 || index.x >= Platform.array.Length || index.y < 0 || index.y >= Platform.array[0].Length) return;
-
 			receiveInput = false;
 			var dir = new Vector3Int(animator.GetInteger(DIR_X), animator.GetInteger(DIR_Y), 0);
 			if (dir != direction)
