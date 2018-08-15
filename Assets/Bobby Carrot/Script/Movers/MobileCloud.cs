@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using BobbyCarrot.Platforms;
+using System.Threading.Tasks;
 
 
 namespace BobbyCarrot.Movers
@@ -13,39 +14,55 @@ namespace BobbyCarrot.Movers
 
 		public static new MobileCloud DeSerialize(int ID, Vector3 wPos, bool use = true)
 		{
-			return null;
+			var obj = Instantiate(R.asset.prefab.mobileCloud, wPos, Quaternion.identity);
+			switch (ID)
+			{
+				case 224:
+					obj.color = PinWheel.Color.RED;
+					break;
+
+				case 225:
+					obj.color = PinWheel.Color.VIOLET;
+					break;
+
+				case 226:
+					obj.color = PinWheel.Color.GREEN;
+					break;
+			}
+
+			if (use) obj.Use();
+			return obj;
 		}
 
 
-		public bool CanExit(Mover mover)
+		private void Start()
 		{
-			throw new System.NotImplementedException();
+			spriteRenderer.sprite = sprites[color];
 		}
 
 
-		public bool CanEnter(Mover mover)
-		{
-			throw new System.NotImplementedException();
-		}
+		public bool CanEnter(Mover mover) =>
+			mover is Flyer || mover is FireBall ||
+				(
+					(mover is Walker || mover is GrassMower) && (direction == Vector3Int.zero)
+				);
 
 
-		public void OnExit(Mover mover)
-		{
-			throw new System.NotImplementedException();
-		}
+		public bool CanExit(Mover mover) => CanEnter(mover);
 
 
-		public void OnEnter(Mover mover)
-		{
-			throw new System.NotImplementedException();
-		}
+		public async Task OnExit(Mover mover) { }
+
+
+		public async Task OnEnter(Mover mover) { }
 
 
 		public void Use(Vector3Int? pos = null)
 		{
 			if (pos == null) pos = transform.position.WorldToArray();
 			var p = pos.Value;
-			Platform.array[p.x][p.y].Add(this);
+			Platform.array[p.x][p.y].Push(this);
+			transform.parent = Board.instance.moverAnchor;
 		}
 	}
 }

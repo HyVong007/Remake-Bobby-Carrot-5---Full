@@ -1,4 +1,5 @@
 ﻿using BobbyCarrot.Movers;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -13,11 +14,17 @@ namespace BobbyCarrot.Platforms
 			NORMAL, START, END
 		}
 
+		public static NormalGround startPoint { get; private set; }
+
 
 		public static new NormalGround DeSerialize(int ID, Vector3 wPos, bool use = true)
 		{
 			var obj = New(ID, wPos, R.asset.prefab.normalGround);
-			if (ID == 149) obj.name = Name.START;
+			if (ID == 149)
+			{
+				obj.name = Name.START;
+				startPoint = obj;
+			}
 			else if (ID == 150) obj.name = Name.END;
 			else obj.name = Name.NORMAL;
 
@@ -39,7 +46,7 @@ namespace BobbyCarrot.Platforms
 			!(mover is LotusLeaf) && !(mover is MobileCloud);
 
 
-		public override void OnEnter(Mover mover)
+		public override async Task OnEnter(Mover mover)
 		{
 			if (name != Name.END || !(mover is Walker)) return;
 

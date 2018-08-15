@@ -1,4 +1,5 @@
 ﻿using BobbyCarrot.Movers;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -39,7 +40,7 @@ namespace BobbyCarrot.Platforms
 		}
 
 
-		public override void OnEnter(Mover mover)
+		public override async Task OnEnter(Mover mover)
 		{
 			if (mover is Flyer || mover is FireBall) return;
 			switch (state)

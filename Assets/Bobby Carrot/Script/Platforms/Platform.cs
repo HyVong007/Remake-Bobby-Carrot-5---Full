@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BobbyCarrot.Movers;
 using System.IO;
+using System.Threading.Tasks;
 
 
 namespace BobbyCarrot.Platforms
@@ -11,7 +12,7 @@ namespace BobbyCarrot.Platforms
 	{
 		protected int ID;
 
-		public static List<IPlatformProcessor>[][] array;
+		public static Stack<IPlatformProcessor>[][] array;
 
 		public SpriteRenderer spriteRenderer => _spriteRenderer;
 
@@ -21,29 +22,24 @@ namespace BobbyCarrot.Platforms
 		[SerializeField] private Animator _animator;
 
 
-		public virtual bool CanExit(Mover mover)
-		{
-			return true;
-		}
+		public virtual bool CanExit(Mover mover) => true;
 
 
-		public virtual bool CanEnter(Mover mover)
-		{
-			return true;
-		}
+		public virtual bool CanEnter(Mover mover) => true;
 
 
-		public virtual void OnExit(Mover mover) { }
+		public virtual async Task OnExit(Mover mover) { }
 
 
-		public virtual void OnEnter(Mover mover) { }
+		public virtual async Task OnEnter(Mover mover) { }
 
 
 		public virtual void Use(Vector3Int? pos = null)
 		{
 			if (pos == null) pos = transform.position.WorldToArray();
 			var p = pos.Value;
-			array[p.x][p.y].Add(this);
+			array[p.x][p.y].Push(this);
+			transform.parent = Board.instance.platformAnchor;
 		}
 
 
@@ -51,7 +47,14 @@ namespace BobbyCarrot.Platforms
 		{
 			Board.onReset += () =>
 			  {
-				  // reset array
+				  var size = new Vector2Int(Level.instance.middleArray.Length, Level.instance.middleArray[0].Length);
+				  array = new Stack<IPlatformProcessor>[size.x][];
+				  for (int x = 0; x < size.x; ++x)
+				  {
+					  array[x] = new Stack<IPlatformProcessor>[size.y];
+					  for (int y = 0; y < size.y; ++y)
+						  array[x][y] = new Stack<IPlatformProcessor>();
+				  }
 			  };
 		}
 
@@ -201,9 +204,9 @@ namespace BobbyCarrot.Platforms
 
 		bool CanEnter(Mover mover);
 
-		void OnExit(Mover mover);
+		Task OnExit(Mover mover);
 
-		void OnEnter(Mover mover);
+		Task OnEnter(Mover mover);
 	}
 
 

@@ -1,5 +1,6 @@
 ﻿using BobbyCarrot.Movers;
 using UnityEngine;
+using System.Threading.Tasks;
 
 
 namespace BobbyCarrot.Platforms
@@ -33,7 +34,7 @@ namespace BobbyCarrot.Platforms
 			!(mover is LotusLeaf) && !(mover is MobileCloud);
 
 
-		public override void OnEnter(Mover mover)
+		public override async Task OnEnter(Mover mover)
 		{
 			if (!(mover is Walker)) return;
 			spriteRenderer.sprite = (isOn = !isOn) ? ON : OFF;

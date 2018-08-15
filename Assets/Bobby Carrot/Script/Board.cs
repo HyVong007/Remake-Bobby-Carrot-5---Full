@@ -11,6 +11,14 @@ namespace BobbyCarrot
 
 		public static event System.Action onReset;
 
+		public Transform platformAnchor => _platformAnchor;
+
+		public Transform moverAnchor => _moverAnchor;
+
+		private bool startGame;
+		[SerializeField] private Walker walker;
+		[SerializeField] private Transform _platformAnchor, _moverAnchor;
+
 
 		private void Awake()
 		{
@@ -22,7 +30,7 @@ namespace BobbyCarrot
 			}
 
 			CommonUtil.Init();
-			//onReset();
+			onReset();
 		}
 
 
@@ -36,28 +44,48 @@ namespace BobbyCarrot
 			for (index.x = 0; index.x < size.x; ++index.x)
 				for (index.y = 0; index.y < size.y; ++index.y)
 				{
-					// Deserialize Platforms
-					var wPos = index.ArrayToWorld();
 					Platform bottomPlatform = null, middlePlatform = null, topPlatform = null;
+					Mover mover = null;
+					var wPos = index.ArrayToWorld();
+					int bottomID = -1, middleID = -1, topID = -1, moverID = -1;
 
-					int ID = level.topArray[index.x][index.y];
-					if (ID != -1) topPlatform = Platform.DeSerialize(ID, wPos);
-
-					ID = level.middleArray[index.x][index.y];
-					if (ID != -1) middlePlatform = Platform.DeSerialize(ID, wPos);
-
+					// Find all IDs
+					middleID = level.middleArray[index.x][index.y];
+					topID = level.topArray[index.x][index.y];
 					if (hasBottom)
 					{
-						ID = level.bottomArray[index.x][index.y];
-						if (ID != -1) bottomPlatform = Platform.DeSerialize(ID, wPos);
+						bottomID = level.bottomArray[index.x][index.y];
+						moverID = middleID;
 					}
+					else moverID = topID;
 
-					// Deserialze Movers
-					Mover mover = null;
-					if (hasBottom) ID = level.middleArray[index.x][index.y];
-					else ID = level.topArray[index.x][index.y];
-					if (ID != -1) mover = Mover.DeSerialize(ID, wPos);
+					// Deserialize Platform and Mover
+					if (bottomID != -1) bottomPlatform = Platform.DeSerialize(bottomID, wPos);
+					if (moverID != -1) mover = Mover.DeSerialize(moverID, wPos);
+					if (middleID != -1) middlePlatform = Platform.DeSerialize(middleID, wPos);
+					if (topID != -1) topPlatform = Platform.DeSerialize(topID, wPos);
 				}
+
+			startGame = false;
+			print("Array width= " + Platform.array.Length + ", Height= " + Platform.array[0].Length);
+		}
+
+
+		private void Update()
+		{
+			if (!startGame)
+			{
+				// The Game starts here !
+				startGame = true;
+				walker.transform.position = NormalGround.startPoint.transform.position;
+				walker.receiveInput = true;
+
+
+
+
+
+				walker.gameObject.SetActive(true);
+			}
 		}
 	}
 }

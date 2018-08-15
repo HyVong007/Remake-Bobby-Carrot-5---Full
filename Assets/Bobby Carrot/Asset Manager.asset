@@ -11,14 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d105c3388df0c534d81552aef33cc698, type: 3}
   m_Name: Asset Manager
   m_EditorClassIdentifier: 
-  animStar: {fileID: 9100000, guid: 0113beb41dace2442868b1a1299c2ec7, type: 2}
-  animWater: {fileID: 9100000, guid: 5f730dd5ea739804493efe5e85cce65b, type: 2}
-  animWaterFall: {fileID: 9100000, guid: abfea8b2249493a42bfce79e3f20ea56, type: 2}
-  animEnd: {fileID: 0}
+  anim:
+    star: {fileID: 0}
+    water: {fileID: 0}
+    waterFall: {fileID: 0}
+    end: {fileID: 0}
   prefab:
     normalObstacle: {fileID: 114894063026292308, guid: 5b585c18e8e6baf4b8bbc078186e0c01,
       type: 2}
-    normalGround: {fileID: 0}
+    normalGround: {fileID: 114269731650341846, guid: 8311d8d82cc9db2498708abfbe526fb0,
+      type: 2}
     snow: {fileID: 0}
     waterFlow: {fileID: 0}
     slipperyIce: {fileID: 0}
@@ -48,6 +50,10 @@ MonoBehaviour:
     rock: {fileID: 0}
     cloudHole: {fileID: 0}
     wind: {fileID: 0}
+    walker: {fileID: 0}
+    fireBall: {fileID: 0}
+    grassMower: {fileID: 0}
+    flyer: {fileID: 0}
     levels:
       testLevel: {fileID: 0}
       empty: {fileID: 114706028323863502, guid: 75c18f83723a1a84bbabe3dc2f68b39e,

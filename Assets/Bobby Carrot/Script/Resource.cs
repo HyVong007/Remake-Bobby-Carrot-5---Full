@@ -18,6 +18,8 @@ namespace BobbyCarrot
 				Destroy(gameObject);
 				return;
 			}
+
+			DontDestroyOnLoad(this);
 		}
 	}
 

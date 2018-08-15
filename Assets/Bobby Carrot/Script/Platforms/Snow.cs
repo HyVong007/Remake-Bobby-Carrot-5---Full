@@ -1,4 +1,5 @@
 ﻿using BobbyCarrot.Movers;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -30,14 +31,14 @@ namespace BobbyCarrot.Platforms
 		}
 
 
-		public override void OnEnter(Mover mover)
+		public override async Task OnEnter(Mover mover)
 		{
 			if (!(mover is Walker) || (Item.count[Item.Name.SNOW_SCRATCHER] == 0)) return;
 
 			// Anim and walker move anim
 
 			var pos = transform.position.WorldToArray();
-			array[pos.x][pos.y].Remove(this);
+			array[pos.x][pos.y].Pop();
 			Destroy(gameObject, 2f);
 		}
 	}

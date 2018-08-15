@@ -22,5 +22,11 @@ namespace BobbyCarrot.Movers
 				return;
 			}
 		}
+
+
+		private void Start()
+		{
+			transform.parent = Board.instance.moverAnchor;
+		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using BobbyCarrot.Movers;
+using System.Threading.Tasks;
 
 
 namespace BobbyCarrot.Platforms
@@ -28,7 +29,7 @@ namespace BobbyCarrot.Platforms
 		}
 
 
-		public override void OnEnter(Mover mover)
+		public override async Task OnEnter(Mover mover)
 		{
 			if (!(mover is Walker)) return;
 			++count[name];

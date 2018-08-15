@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using BobbyCarrot.Platforms;
+using System.IO;
+using System.Threading.Tasks;
 
 
 namespace BobbyCarrot.Movers
@@ -11,31 +13,52 @@ namespace BobbyCarrot.Movers
 
 		public static new LotusLeaf DeSerialize(int ID, Vector3 wPos, bool use = true)
 		{
-			return null;
+			var obj = Instantiate(R.asset.prefab.lotusLeaf, wPos, Quaternion.identity);
+			if (use) obj.Use();
+			return obj;
 		}
 
 
-		public bool CanExit(Mover mover)
+		public static LotusLeaf DeSerialize(byte[] data)
 		{
-			throw new System.NotImplementedException();
+			BinaryReader[] r = null;
+			var d = DeSerialize(data, R.asset.prefab.lotusLeaf, r);
+			d.MoveNext();
+			var obj = d.Current;
+			obj.walker = r[0].ReadBoolean() ? Walker.instance : null;
+			d.MoveNext();
+			return obj;
 		}
 
 
-		public bool CanEnter(Mover mover)
+		public static byte[] Serialize(object _obj)
 		{
-			throw new System.NotImplementedException();
+			var obj = (LotusLeaf)_obj;
+			BinaryWriter[] w = null;
+			var s = Serialize(obj, w);
+			s.MoveNext();
+			w[0].Write(obj.walker != null);
+			s.MoveNext();
+			s.MoveNext();
+			return s.Current;
 		}
 
 
-		public void OnExit(Mover mover)
-		{
-			throw new System.NotImplementedException();
-		}
+		public bool CanEnter(Mover mover) =>
+			mover is Flyer || mover is FireBall || (mover is Walker && direction == Vector3Int.zero);
 
 
-		public void OnEnter(Mover mover)
+		public bool CanExit(Mover mover) => CanEnter(mover);
+
+
+		public async Task OnExit(Mover mover) { }
+
+
+		public async Task OnEnter(Mover mover)
 		{
-			throw new System.NotImplementedException();
+			if (mover is Flyer || mover is FireBall) return;
+
+			// Lotus Leaf can go ahead ?
 		}
 
 
@@ -43,7 +66,8 @@ namespace BobbyCarrot.Movers
 		{
 			if (pos == null) pos = transform.position.WorldToArray();
 			var p = pos.Value;
-			Platform.array[p.x][p.y].Add(this);
+			Platform.array[p.x][p.y].Push(this);
+			transform.parent = Board.instance.moverAnchor;
 		}
 	}
 }

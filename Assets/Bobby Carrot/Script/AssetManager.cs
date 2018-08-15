@@ -58,6 +58,10 @@ namespace BobbyCarrot
 			public Rock rock;
 			public CloudHole cloudHole;
 			public Wind wind;
+			public Walker walker;
+			public FireBall fireBall;
+			public GrassMower grassMower;
+			public Flyer flyer;
 
 			// Level
 

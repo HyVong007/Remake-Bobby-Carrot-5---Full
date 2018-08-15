@@ -1,4 +1,5 @@
 ﻿using BobbyCarrot.Movers;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -10,7 +11,7 @@ namespace BobbyCarrot.Platforms
 			!(mover is LotusLeaf) && !(mover is MobileCloud);
 
 
-		public override void OnExit(Mover mover)
+		public override async Task OnExit(Mover mover)
 		{
 			if (mover is Flyer || mover is FireBall) return;
 
