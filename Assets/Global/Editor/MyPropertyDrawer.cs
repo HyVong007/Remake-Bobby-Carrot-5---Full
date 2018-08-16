@@ -7,4 +7,5 @@
 [CustomPropertyDrawer(typeof(MazeShape_Sprite_Dict))]
 [CustomPropertyDrawer(typeof(CarrotState_Sprite_Dict))]
 [CustomPropertyDrawer(typeof(ItemName_Sprite_Dict))]
+[CustomPropertyDrawer(typeof(Vector3Int_Transform_Dict))]
 public class MyPropertyDrawer : SerializableDictionaryPropertyDrawer { }

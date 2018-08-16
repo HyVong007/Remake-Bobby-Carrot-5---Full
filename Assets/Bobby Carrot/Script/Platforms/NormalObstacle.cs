@@ -39,9 +39,7 @@ namespace BobbyCarrot.Platforms
 			return obj;
 		}
 
-
 		// Platform.Serialize(object): byte[]
-
 
 		public static new NormalObstacle DeSerialize(byte[] data)
 		{

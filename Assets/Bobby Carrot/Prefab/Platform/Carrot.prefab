@@ -76,9 +76,10 @@ MonoBehaviour:
   sprites:
     m_keys: 000000000100000002000000
     m_values:
-    - {fileID: 21300792, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-    - {fileID: 21300824, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-    - {fileID: 21300856, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300912, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300914, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300916, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+  mowingAnim: {fileID: 1856146130040378, guid: 4c19c9c9844ee834685424987242c33a, type: 2}
 --- !u!212 &212784057145056308
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -114,7 +115,7 @@ SpriteRenderer:
   m_SortingLayerID: 1873255195
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300856, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+  m_Sprite: {fileID: 21300916, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

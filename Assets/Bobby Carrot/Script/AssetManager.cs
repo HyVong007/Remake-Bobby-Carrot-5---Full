@@ -72,6 +72,13 @@ namespace BobbyCarrot
 				public Level testLevel, empty;
 			}
 			public Levels levels;
+
+			[System.Serializable]
+			public struct UI
+			{
+				public GameObject blinker;
+			}
+			public UI ui;
 		}
 		public Prefab prefab;
 

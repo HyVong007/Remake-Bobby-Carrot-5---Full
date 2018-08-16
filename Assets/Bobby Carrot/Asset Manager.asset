@@ -26,7 +26,8 @@ MonoBehaviour:
     waterFlow: {fileID: 0}
     slipperyIce: {fileID: 0}
     item: {fileID: 114912889975238766, guid: 8cbfaf299f551d349926b17993285824, type: 2}
-    grassMowerStop: {fileID: 0}
+    grassMowerStop: {fileID: 114341812919023340, guid: 1effa12abaee92d41a10678b519f4a22,
+      type: 2}
     button:
       railRoad: {fileID: 0}
       maze: {fileID: 0}
@@ -39,7 +40,7 @@ MonoBehaviour:
     maze: {fileID: 0}
     box: {fileID: 0}
     grass: {fileID: 0}
-    carrot: {fileID: 0}
+    carrot: {fileID: 114733750209469108, guid: 1bfd6bda40424e546ba222458593d271, type: 2}
     easterEgg: {fileID: 0}
     locker: {fileID: 0}
     pinWheel: {fileID: 0}
@@ -53,11 +54,15 @@ MonoBehaviour:
     wind: {fileID: 0}
     walker: {fileID: 0}
     fireBall: {fileID: 0}
-    grassMower: {fileID: 0}
+    grassMower: {fileID: 114843922698836104, guid: f155e77b8d73b1744986a6d8ef314d18,
+      type: 2}
     flyer: {fileID: 0}
     levels:
       testLevel: {fileID: 0}
       empty: {fileID: 114706028323863502, guid: 75c18f83723a1a84bbabe3dc2f68b39e,
+        type: 2}
+    ui:
+      blinker: {fileID: 1045723667396732, guid: fd3b1b4776c74d1498912f630c23b1c0,
         type: 2}
   myTile:
     platforms:

@@ -13,6 +13,8 @@ namespace BobbyCarrot.Platforms
 
 		[SerializeField] private CarrotState_Sprite_Dict sprites;
 
+		[SerializeField] private GameObject mowingAnim;
+
 		public enum State
 		{
 			LEAF, HOLE, CARROT
@@ -22,7 +24,6 @@ namespace BobbyCarrot.Platforms
 		private void Start()
 		{
 			spriteRenderer.sprite = sprites[state];
-			if (state != State.HOLE) ++countDown;
 		}
 
 
@@ -49,7 +50,6 @@ namespace BobbyCarrot.Platforms
 				case State.LEAF:
 					state = State.CARROT;
 					spriteRenderer.sprite = sprites[State.CARROT];
-					// Anim
 					return;
 
 				case State.CARROT:
@@ -63,6 +63,13 @@ namespace BobbyCarrot.Platforms
 		}
 
 
+		public override async Task OnExit(Mover mover)
+		{
+			if (!(mover is GrassMower) || state != State.CARROT) return;
+			Destroy(Instantiate(mowingAnim, transform.position, Quaternion.identity), 3f);
+		}
+
+
 		static Carrot()
 		{
 			Board.onReset += () => countDown = 0;
@@ -71,7 +78,23 @@ namespace BobbyCarrot.Platforms
 
 		public static new Carrot DeSerialize(int ID, Vector3 wPos, bool use = true)
 		{
-			return null;
+			var carrot = Instantiate(R.asset.prefab.carrot, wPos, Quaternion.identity);
+			switch (ID)
+			{
+				case 200: carrot.state = State.LEAF; break;
+				case 201: carrot.state = State.HOLE; break;
+				case 202: carrot.state = State.CARROT; break;
+			}
+
+			if (use) carrot.Use();
+			return carrot;
+		}
+
+
+		public override void Use(Vector3Int? pos = null)
+		{
+			base.Use(pos);
+			if (state != State.HOLE) ++countDown;
 		}
 	}
 }

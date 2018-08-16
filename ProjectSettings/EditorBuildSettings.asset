@@ -8,7 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Bobby Carrot/Scene/Main.unity
     guid: 16c0f84f016bdb24bb04c101469f1e87
-  - enabled: 1
-    path: Assets/Bobby Carrot/Scene/Hehe.unity
-    guid: b124a2828571e344982876fcbab85715
   m_configObjects: {}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BobbyCarrot.Movers;
 using System.Threading.Tasks;
 using System.IO;
+using System.Threading;
 
 
 namespace BobbyCarrot.Platforms
@@ -15,7 +16,7 @@ namespace BobbyCarrot.Platforms
 
 		public static readonly Dictionary<Name, int> count = new Dictionary<Name, int>();
 
-		public enum Name : byte
+		public enum Name
 		{
 			ORANGE_MAP, BLUE_MAP, KEY, SPEAKER, MUSIC, SHOE,
 			MAGNIFYING_GLASS, SNOW_SCRATCHER, BEAN, GAS, KITE,
@@ -42,6 +43,8 @@ namespace BobbyCarrot.Platforms
 			var pos = transform.position.WorldToArray();
 			array[pos.x][pos.y].Pop();
 			Destroy(gameObject);
+			cts.Cancel();
+			blinker.SetActive(false);
 		}
 
 
@@ -108,6 +111,39 @@ namespace BobbyCarrot.Platforms
 			}
 
 			return item;
+		}
+
+
+		// Blinking Item UI
+
+		private static GameObject blinker;
+		private static Animator blinkerAnimator;
+		private static readonly int NAME_PARAM = Animator.StringToHash("name");
+		private static CancellationTokenSource cts = new CancellationTokenSource();
+
+		public static void BlinkItem(Name name, Transform moverAnchor, float delaySeconds = 3f)
+		{
+			if (!blinker)
+			{
+				blinker = Instantiate(R.asset.prefab.ui.blinker);
+				blinkerAnimator = blinker.transform.GetChild(0).GetComponent<Animator>();
+			}
+
+			blinker.transform.position = moverAnchor.position;
+			blinker.transform.parent = moverAnchor;
+			blinker.SetActive(true);
+			blinkerAnimator.SetInteger(NAME_PARAM, (int)name);
+			cts.Cancel();
+			cts = new CancellationTokenSource();
+			WaitToHideBlinker(delaySeconds, cts.Token);
+		}
+
+
+		private static async void WaitToHideBlinker(float delaySeconds, CancellationToken token)
+		{
+			await Task.Delay(Mathf.CeilToInt(delaySeconds * 1000));
+			if (token.IsCancellationRequested) return;
+			blinker?.gameObject.SetActive(false);
 		}
 	}
 }

@@ -19,3 +19,6 @@ public class CarrotState_Sprite_Dict : SerializableDictionary<Carrot.State, Spri
 
 [System.Serializable]
 public class ItemName_Sprite_Dict : SerializableDictionary<Item.Name, Sprite> { }
+
+[System.Serializable]
+public class Vector3Int_Transform_Dict : SerializableDictionary<Vector3Int, Transform> { }
