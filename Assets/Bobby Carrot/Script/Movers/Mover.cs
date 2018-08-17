@@ -1,8 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using BobbyCarrot.Platforms;
 
 
 namespace BobbyCarrot.Movers
@@ -10,8 +8,11 @@ namespace BobbyCarrot.Movers
 	[RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
 	public abstract class Mover : MonoBehaviour
 	{
-		//[System.NonSerialized]
+		[System.NonSerialized]
 		public Vector3Int direction;
+
+		[System.NonSerialized]
+		public bool receiveInput = true;
 
 		public float speed;
 

@@ -2,6 +2,7 @@
 using UnityEngine.Tilemaps;
 using BobbyCarrot.Platforms;
 using BobbyCarrot.Movers;
+using BobbyCarrot.Util;
 
 
 namespace BobbyCarrot
@@ -53,6 +54,7 @@ namespace BobbyCarrot
 			public PinWheel pinWheel;
 			public Wood wood;
 			public BeanTree beanTree;
+			public BeanTreeNode beanTreeNode;
 			public MobileCloud mobileCloud;
 			public IcyBlock icyBlock;
 			public LotusLeaf lotusLeaf;
@@ -63,6 +65,8 @@ namespace BobbyCarrot
 			public FireBall fireBall;
 			public GrassMower grassMower;
 			public Flyer flyer;
+			public Dragon dragon;
+			public DragonNode dragonNode;
 
 			// Level
 

@@ -12,8 +12,6 @@ namespace BobbyCarrot.Movers
 		public static readonly int DIR_X = Animator.StringToHash("dirX"),
 			DIR_Y = Animator.StringToHash("dirY");
 
-		public bool receiveInput = true;
-
 		public static GrassMower instance { get; private set; }
 
 		[SerializeField] private Vector3Int_Transform_Dict smokeAnchors;

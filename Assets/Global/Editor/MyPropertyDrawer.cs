@@ -9,4 +9,6 @@
 [CustomPropertyDrawer(typeof(ItemName_Sprite_Dict))]
 [CustomPropertyDrawer(typeof(Vector3Int_Transform_Dict))]
 [CustomPropertyDrawer(typeof(MirrorRotation_Sprite_Dict))]
+[CustomPropertyDrawer(typeof(BeanTreeNodeName_Sprite_Dict))]
+[CustomPropertyDrawer(typeof(DragonNodeName_Sprite_Dict))]
 public class MyPropertyDrawer : SerializableDictionaryPropertyDrawer { }

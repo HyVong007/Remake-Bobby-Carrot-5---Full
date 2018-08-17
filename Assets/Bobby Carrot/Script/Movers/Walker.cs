@@ -16,9 +16,6 @@ namespace BobbyCarrot.Movers
 			DIR_Y = Animator.StringToHash("dirY"),
 			SCRATCH = Animator.StringToHash("scratch");
 
-		[System.NonSerialized]
-		public bool receiveInput = false;
-
 		public static Walker instance { get; private set; }
 
 		[SerializeField] private float relaxDelaySeconds = 5f;
@@ -171,7 +168,7 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		public async void GotoIdle(RelaxState idleState = RelaxState.DOWN_IDLE)
+		public async Task GotoIdle(RelaxState idleState = RelaxState.DOWN_IDLE)
 		{
 			if (idleState == RelaxState.RELAX) throw new System.Exception("Idle state cannot be Relax !");
 			relaxTime = -1f;

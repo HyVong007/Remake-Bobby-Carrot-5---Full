@@ -25,3 +25,9 @@ public class Vector3Int_Transform_Dict : SerializableDictionary<Vector3Int, Tran
 
 [System.Serializable]
 public class MirrorRotation_Sprite_Dict : SerializableDictionary<Mirror.Rotation, Sprite> { }
+
+[System.Serializable]
+public class BeanTreeNodeName_Sprite_Dict : SerializableDictionary<BeanTreeNode.Name, Sprite> { }
+
+[System.Serializable]
+public class DragonNodeName_Sprite_Dict : SerializableDictionary<DragonNode.Name, Sprite> { }

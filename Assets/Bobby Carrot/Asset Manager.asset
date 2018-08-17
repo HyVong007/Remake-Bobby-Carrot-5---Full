@@ -46,7 +46,10 @@ MonoBehaviour:
     locker: {fileID: 114074843416765948, guid: 5049f2afef44fbd40907754a9839b256, type: 2}
     pinWheel: {fileID: 0}
     wood: {fileID: 114375879885476618, guid: 885c322fdbd4e6b46b6baf83d100a995, type: 2}
-    beanTree: {fileID: 0}
+    beanTree: {fileID: 114352893468703012, guid: 0c89956e7f79cdc45b730a55087964b2,
+      type: 2}
+    beanTreeNode: {fileID: 114324743180800556, guid: 8995a09fbfd70854a8ef6e40fda8152b,
+      type: 2}
     mobileCloud: {fileID: 0}
     icyBlock: {fileID: 114119362715024486, guid: 67dac73800ad0be48978b03aef789a8b,
       type: 2}
@@ -59,6 +62,9 @@ MonoBehaviour:
     grassMower: {fileID: 114843922698836104, guid: f155e77b8d73b1744986a6d8ef314d18,
       type: 2}
     flyer: {fileID: 0}
+    dragon: {fileID: 114358012080538388, guid: aaf06e1e1945f154f89c0f6198077fa1, type: 2}
+    dragonNode: {fileID: 114262264303799348, guid: 5cc866efd4ff91b4f9d667d8874ac0db,
+      type: 2}
     levels:
       testLevel: {fileID: 0}
       empty: {fileID: 114706028323863502, guid: 75c18f83723a1a84bbabe3dc2f68b39e,
