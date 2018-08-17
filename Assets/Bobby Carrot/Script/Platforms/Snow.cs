@@ -7,27 +7,18 @@ namespace BobbyCarrot.Platforms
 {
 	public class Snow : Platform
 	{
-		public static new Snow DeSerialize(int ID, Vector3 wPos, bool use = true)
-		{
-			var obj = New(ID, wPos, R.asset.prefab.snow);
-			if (use) obj.Use();
-			return obj;
-		}
+		public static new Snow DeSerialize(int ID, Vector3 wPos, bool use = true) =>
+			Platform.DeSerialize(ID, wPos, R.asset.prefab.snow);
 
-
-		public static new Snow DeSerialize(byte[] data)
-		{
-			int ID; Vector3 wPos;
-			DeSerialize(data, out ID, out wPos);
-			return DeSerialize(ID, wPos, false);
-		}
-
-		// Platform.Serialize
 
 		public override bool CanEnter(Mover mover)
 		{
 			if (mover is Flyer || mover is FireBall) return true;
-			return mover is Walker && Item.count[Item.Name.SNOW_SCRATCHER] > 0;
+			if (mover is Walker)
+				if (Item.count[Item.Name.SNOW_SCRATCHER] > 0) return true;
+				else Item.BlinkItem(Item.Name.SNOW_SCRATCHER, mover.transform);
+
+			return false;
 		}
 
 
@@ -35,11 +26,15 @@ namespace BobbyCarrot.Platforms
 		{
 			if (!(mover is Walker) || (Item.count[Item.Name.SNOW_SCRATCHER] == 0)) return;
 
-			// Anim and walker move anim
+			var walker = (Walker)mover;
+			walker.receiveInput = false;
+			await walker.ScratchSnow();
 
 			var pos = transform.position.WorldToArray();
 			array[pos.x][pos.y].Pop();
-			Destroy(gameObject, 2f);
+			Destroy(gameObject);
+			walker.GotoIdle((Walker.RelaxState)Walker.dirToIdle[walker.direction]);
+			walker.receiveInput = true;
 		}
 	}
 }

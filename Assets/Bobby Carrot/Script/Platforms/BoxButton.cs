@@ -1,6 +1,7 @@
 ﻿using BobbyCarrot.Movers;
 using UnityEngine;
 using System.Threading.Tasks;
+using System.IO;
 
 
 namespace BobbyCarrot.Platforms
@@ -45,7 +46,59 @@ namespace BobbyCarrot.Platforms
 
 		public static new BoxButton DeSerialize(int ID, Vector3 wPos, bool use = true)
 		{
-			return null;
+			var button = Instantiate(R.asset.prefab.button.box, wPos, Quaternion.identity);
+			switch (ID)
+			{
+				case 191:
+					button.isYellow = true; button.isOn = false;
+					break;
+
+				case 192:
+					button.isYellow = true; button.isOn = true;
+					break;
+
+				case 193:
+					button.isYellow = false; button.isOn = false;
+					break;
+
+				case 194:
+					button.isYellow = false; button.isOn = true;
+					break;
+			}
+
+			if (use) button.Use();
+			return button;
+		}
+
+
+		public static new byte[] Serialize(object obj)
+		{
+			var box = (BoxButton)obj;
+			using (MemoryStream m = new MemoryStream())
+			using (BinaryWriter w = new BinaryWriter(m))
+			{
+				var pos = box.transform.position;
+				w.Write(pos.x); w.Write(pos.y);
+				w.Write(box.isYellow);
+				w.Write(box.isOn);
+
+				return m.ToArray();
+			}
+		}
+
+
+		public static new BoxButton DeSerialize(byte[] data)
+		{
+			var box = Instantiate(R.asset.prefab.button.box);
+			using (MemoryStream m = new MemoryStream(data))
+			using (BinaryReader r = new BinaryReader(m))
+			{
+				box.transform.position = new Vector3(r.ReadSingle(), r.ReadSingle(), 0f);
+				box.isYellow = r.ReadBoolean();
+				box.isOn = r.ReadBoolean();
+			}
+
+			return box;
 		}
 	}
 }

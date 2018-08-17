@@ -194,6 +194,15 @@ namespace BobbyCarrot.Platforms
 			obj.spriteRenderer.sprite = R.asset.myTile.platforms[ID].sprite;
 			return obj;
 		}
+
+
+		protected static T DeSerialize<T>(int ID, Vector3 wPos, T prefab, bool use = true) where T : Platform
+		{
+			var obj = Instantiate(prefab, wPos, Quaternion.identity);
+			obj.ID = ID;
+			if (use) obj.Use();
+			return obj;
+		}
 	}
 
 
@@ -215,6 +224,7 @@ namespace BobbyCarrot.Platforms
 	{
 		void ChangeState();
 	}
+
 
 
 	public interface IUsable

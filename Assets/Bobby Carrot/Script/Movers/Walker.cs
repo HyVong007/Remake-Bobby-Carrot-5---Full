@@ -136,11 +136,11 @@ namespace BobbyCarrot.Movers
 		private async void RunPlatform(IPlatformProcessor currentPlatform, IPlatformProcessor nextPlatform)
 		{
 			await currentPlatform.OnExit(this);
-			if (!receiveInput || !gameObject.activeSelf) return;
+			if (!receiveInput || !gameObject.activeSelf || direction == Vector3Int.zero) return;
 
 			await Move();
 			await nextPlatform.OnEnter(this);
-			if (!receiveInput || !gameObject.activeSelf) return;
+			if (!receiveInput || !gameObject.activeSelf || direction == Vector3Int.zero) return;
 
 			animator.SetInteger(DIR_X, 0);
 			animator.SetInteger(DIR_Y, 0);
@@ -205,6 +205,25 @@ namespace BobbyCarrot.Movers
 			}
 
 			direction = Vector3Int.zero;
+		}
+
+
+		public async Task ScratchSnow(Vector3Int? direction = null)
+		{
+			Vector3Int dir = (direction != null) ? direction.Value : this.direction;
+			animator.SetBool(SCRATCH, true);
+			animator.SetInteger(DIR_X, dir.x);
+			animator.SetInteger(DIR_Y, dir.y);
+			await Task.Delay(500);
+			animator.SetBool(SCRATCH, false);
+		}
+
+
+		public void Die()
+		{
+			receiveInput = false;
+			animator.SetTrigger(DIE);
+			Destroy(gameObject, 3f);
 		}
 	}
 }

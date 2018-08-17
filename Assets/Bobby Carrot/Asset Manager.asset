@@ -22,7 +22,7 @@ MonoBehaviour:
       type: 2}
     normalGround: {fileID: 114269731650341846, guid: 8311d8d82cc9db2498708abfbe526fb0,
       type: 2}
-    snow: {fileID: 0}
+    snow: {fileID: 114168397932811124, guid: 6a1e2f9a52f0aed468018921a290aa6c, type: 2}
     waterFlow: {fileID: 0}
     slipperyIce: {fileID: 0}
     item: {fileID: 114912889975238766, guid: 8cbfaf299f551d349926b17993285824, type: 2}
@@ -30,26 +30,28 @@ MonoBehaviour:
       type: 2}
     button:
       railRoad: {fileID: 0}
-      maze: {fileID: 0}
+      maze: {fileID: 114142080044282750, guid: e74ebc6d370a40a42a55ee5b9737033c, type: 2}
       waterFlow: {fileID: 0}
       pinWheel: {fileID: 0}
-      box: {fileID: 0}
-    trap: {fileID: 0}
-    mirror: {fileID: 0}
+      box: {fileID: 114408083701920900, guid: 83c2abf831749ad4bbbd033d87eaf2cf, type: 2}
+    trap: {fileID: 114310260575079526, guid: 2ef733d3109340b41a7e47434e1ae6d6, type: 2}
+    mirror: {fileID: 114884669722022770, guid: 3cc51f6f6f96ed0478b556782761ac53, type: 2}
     railRoad: {fileID: 0}
-    maze: {fileID: 0}
-    box: {fileID: 0}
-    grass: {fileID: 0}
+    maze: {fileID: 114049539409801276, guid: f36da0bc112475d43bd3415ecbbc07c8, type: 2}
+    box: {fileID: 114910874775257820, guid: 46d349c32a7387e478f0aac249ee62c1, type: 2}
+    grass: {fileID: 114311006574336974, guid: 1c3bb9eef88369c44bbef8ffdc4de6fa, type: 2}
     carrot: {fileID: 114733750209469108, guid: 1bfd6bda40424e546ba222458593d271, type: 2}
-    easterEgg: {fileID: 0}
-    locker: {fileID: 0}
+    easterEgg: {fileID: 114770561901825154, guid: 5d9518847dc88dd4a84678c8f3eb446f,
+      type: 2}
+    locker: {fileID: 114074843416765948, guid: 5049f2afef44fbd40907754a9839b256, type: 2}
     pinWheel: {fileID: 0}
-    wood: {fileID: 0}
+    wood: {fileID: 114375879885476618, guid: 885c322fdbd4e6b46b6baf83d100a995, type: 2}
     beanTree: {fileID: 0}
     mobileCloud: {fileID: 0}
-    icyBlock: {fileID: 0}
+    icyBlock: {fileID: 114119362715024486, guid: 67dac73800ad0be48978b03aef789a8b,
+      type: 2}
     lotusLeaf: {fileID: 0}
-    rock: {fileID: 0}
+    rock: {fileID: 114537467853167864, guid: 1457e12ecc622ae40954d31e756b1894, type: 2}
     cloudHole: {fileID: 0}
     wind: {fileID: 0}
     walker: {fileID: 0}

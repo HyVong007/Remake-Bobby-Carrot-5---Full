@@ -73,7 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 212341502613075396}
   _animator: {fileID: 95050088775413348}
-  noEggSprite: {fileID: 21300888, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+  noEggSprite: {fileID: 21300918, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
   hasEggSprite: {fileID: 21300920, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
 --- !u!212 &212341502613075396
 SpriteRenderer:

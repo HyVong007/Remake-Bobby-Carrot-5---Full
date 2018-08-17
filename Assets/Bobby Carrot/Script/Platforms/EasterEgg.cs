@@ -1,6 +1,7 @@
 ﻿using BobbyCarrot.Movers;
 using System.Threading.Tasks;
 using UnityEngine;
+using System.IO;
 
 
 namespace BobbyCarrot.Platforms
@@ -17,7 +18,6 @@ namespace BobbyCarrot.Platforms
 		private void Start()
 		{
 			spriteRenderer.sprite = hasEgg ? hasEggSprite : noEggSprite;
-			if (!hasEgg) ++countDown;
 		}
 
 
@@ -29,7 +29,7 @@ namespace BobbyCarrot.Platforms
 		}
 
 
-		public override async Task OnEnter(Mover mover)
+		public override async Task OnExit(Mover mover)
 		{
 			if (hasEgg || !(mover is Walker)) return;
 			hasEgg = true;
@@ -48,7 +48,47 @@ namespace BobbyCarrot.Platforms
 
 		public static new EasterEgg DeSerialize(int ID, Vector3 wPos, bool use = true)
 		{
-			return null;
+			var egg = Instantiate(R.asset.prefab.easterEgg, wPos, Quaternion.identity);
+			egg.hasEgg = (ID == 204);
+
+			if (use) egg.Use();
+			return egg;
+		}
+
+
+		public static new byte[] Serialize(object obj)
+		{
+			var egg = (EasterEgg)obj;
+			using (MemoryStream m = new MemoryStream())
+			using (BinaryWriter w = new BinaryWriter(m))
+			{
+				var pos = egg.transform.position;
+				w.Write(pos.x); w.Write(pos.y);
+				w.Write(egg.hasEgg);
+
+				return m.ToArray();
+			}
+		}
+
+
+		public static new EasterEgg DeSerialize(byte[] data)
+		{
+			var egg = Instantiate(R.asset.prefab.easterEgg);
+			using (MemoryStream m = new MemoryStream(data))
+			using (BinaryReader r = new BinaryReader(m))
+			{
+				egg.transform.position = new Vector3(r.ReadSingle(), r.ReadSingle(), 0f);
+				egg.hasEgg = r.ReadBoolean();
+			}
+
+			return egg;
+		}
+
+
+		public override void Use(Vector3Int? pos = null)
+		{
+			base.Use(pos);
+			if (!hasEgg) ++countDown;
 		}
 	}
 }

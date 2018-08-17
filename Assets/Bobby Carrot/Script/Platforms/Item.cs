@@ -44,7 +44,7 @@ namespace BobbyCarrot.Platforms
 			array[pos.x][pos.y].Pop();
 			Destroy(gameObject);
 			cts.Cancel();
-			blinker.SetActive(false);
+			blinker?.SetActive(false);
 		}
 
 
@@ -54,6 +54,8 @@ namespace BobbyCarrot.Platforms
 			{
 				foreach (Name name in System.Enum.GetValues(typeof(Name)))
 					count[name] = 0;
+
+				blinker = null;
 			};
 		}
 

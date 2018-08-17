@@ -73,10 +73,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 212647649447581444}
   _animator: {fileID: 95380846997122462}
-  yellowON: {fileID: 21300632, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-  yellowOFF: {fileID: 21300664, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-  pinkON: {fileID: 21300696, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-  pinkOFF: {fileID: 21300728, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+  yellowON: {fileID: 21300902, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+  yellowOFF: {fileID: 21300904, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+  pinkON: {fileID: 21300906, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+  pinkOFF: {fileID: 21300908, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
 --- !u!212 &212647649447581444
 SpriteRenderer:
   m_ObjectHideFlags: 1
