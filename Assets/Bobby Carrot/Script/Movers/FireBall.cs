@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
 
 
 namespace BobbyCarrot.Movers
@@ -22,6 +22,30 @@ namespace BobbyCarrot.Movers
 		private void Start()
 		{
 			transform.parent = Board.instance.moverAnchor;
+		}
+
+
+		private Task runningPlatform;
+
+		private void Update()
+		{
+			if (!isLock && runningPlatform?.IsCompleted != false)
+				runningPlatform = RunPlatform();
+		}
+
+
+		private new async Task RunPlatform()
+		{
+			bool? result = await base.RunPlatform();
+			if (result == true)
+			{
+				// Normal finish of running OnExit -> Move -> OnEnter
+			}
+			else if (result == false)
+			{
+				// Cannot Go
+				gameObject.SetActive(false);
+			}
 		}
 	}
 }

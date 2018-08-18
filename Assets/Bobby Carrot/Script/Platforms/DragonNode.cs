@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace BobbyCarrot.Platforms
 {
+	/// <summary>
+	/// Head Node has Animation
+	/// </summary>
 	public class DragonNode : Platform
 	{
 		public new Name name { get; private set; }
 
 		[System.NonSerialized]
 		public Dragon dragon;
+
+		public static readonly int FIRE = Animator.StringToHash("fire");
 
 		[SerializeField] private DragonNodeName_Sprite_Dict sprites;
 
@@ -38,19 +43,19 @@ namespace BobbyCarrot.Platforms
 
 		public override bool CanEnter(Mover mover) =>
 			mover is Flyer || mover is FireBall ||
-				(
-					name == Name.TAIL && (mover is Walker || mover is GrassMower)
-				);
+			(
+				name == Name.TAIL && (mover is Walker || mover is GrassMower)
+			);
 
 
 		public override async Task OnEnter(Mover mover)
 		{
-			if (name != Name.TAIL || !(mover is Walker) || !(mover is GrassMower)) return;
+			if (name != Name.TAIL || (!(mover is Walker) && !(mover is GrassMower))) return;
 
 			if (mover is Walker) await ((Walker)mover).GotoIdle((Walker.RelaxState)Walker.dirToIdle[mover.direction]);
-			mover.receiveInput = false;
+			mover.isLock = true;
 			await dragon.Fire();
-			mover.receiveInput = true;
+			mover.isLock = false;
 		}
 	}
 }

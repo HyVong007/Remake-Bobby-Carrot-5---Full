@@ -12,8 +12,6 @@ namespace BobbyCarrot.Movers
 		public static readonly int RELAX_STATE = Animator.StringToHash("relax_state"),
 			DIE = Animator.StringToHash("die"),
 			DISAPPEAR = Animator.StringToHash("disappear"),
-			DIR_X = Animator.StringToHash("dirX"),
-			DIR_Y = Animator.StringToHash("dirY"),
 			SCRATCH = Animator.StringToHash("scratch");
 
 		public static Walker instance { get; private set; }
@@ -56,40 +54,40 @@ namespace BobbyCarrot.Movers
 
 		private void Update()
 		{
-			if (receiveInput && direction == Vector3Int.zero) direction = CommonUtil.GetInputDirection();
+			if (!isLock && direction == Vector3Int.zero) direction = GetInputDirection();
 			if (direction == Vector3Int.zero)
 			{
 				// Check to count down relax
 				if (animator.GetInteger(RELAX_STATE) != (int)RelaxState.RELAX) CountDownRelax();
 			}
-			else if (receiveInput)
+			else if (!isLock)
 			{
 				// Process Input
 				relaxTime = -1f;
 				if (animator.GetInteger(RELAX_STATE) == (int)RelaxState.RELAX)
 					animator.SetInteger(RELAX_STATE, dirToIdle[direction]);
 
-				var pos = transform.position.WorldToArray();
-				var nextPos = pos + direction;
+				RunPlatform();
+			}
+		}
 
-				bool canGo = false;
-				if (0 <= nextPos.x && nextPos.x < Platform.array.Length && 0 <= nextPos.y && nextPos.y < Platform.array[0].Length)
-				{
-					var currentPlatform = Platform.array[pos.x][pos.y].Peek();
-					var nextPlatform = Platform.array[nextPos.x][nextPos.y].Peek();
-					if (currentPlatform.CanExit(this) && nextPlatform.CanEnter(this))
-					{
-						// Platform processes the mover
-						canGo = true;
-						RunPlatform(currentPlatform, nextPlatform);
-					}
-				}
 
-				if (!canGo)
-				{
-					// Mover cannot go
-					GotoIdle((RelaxState)dirToIdle[direction]);
-				}
+		private new async void RunPlatform()
+		{
+			bool? result = await base.RunPlatform();
+			if (result == true)
+			{
+				// Normal finish of running from OnExit -> Move -> OnEnter
+				animator.SetInteger(DIR_X, 0);
+				animator.SetInteger(DIR_Y, 0);
+				var idle = dirToIdle[direction];
+				direction = Vector3Int.zero;
+				animator.SetInteger(RELAX_STATE, idle);
+			}
+			else if (result == false)
+			{
+				// Mover cannot go
+				var g = GotoIdle((RelaxState)dirToIdle[direction]);
 			}
 		}
 
@@ -102,69 +100,6 @@ namespace BobbyCarrot.Movers
 				relaxTime = -1f;
 				animator.SetInteger(RELAX_STATE, (int)RelaxState.RELAX);
 			}
-		}
-
-
-		public static byte[] Serialize(object _obj)
-		{
-			var obj = (Walker)_obj;
-			BinaryWriter[] w = null;
-			var s = Serialize(obj, w);
-			s.MoveNext();
-			w[0].Write(obj.relaxDelaySeconds);
-			s.MoveNext(); s.MoveNext();
-			return s.Current;
-		}
-
-
-		public static Walker DeSerialize(byte[] data)
-		{
-			BinaryReader[] r = null;
-			var d = DeSerialize(data, R.asset.prefab.walker, r);
-			d.MoveNext();
-			var obj = d.Current;
-			obj.relaxDelaySeconds = r[0].ReadSingle();
-			d.MoveNext();
-
-			return obj;
-		}
-
-
-		private async void RunPlatform(IPlatformProcessor currentPlatform, IPlatformProcessor nextPlatform)
-		{
-			await currentPlatform.OnExit(this);
-			if (!receiveInput || !gameObject.activeSelf || direction == Vector3Int.zero) return;
-
-			await Move();
-			await nextPlatform.OnEnter(this);
-			if (!receiveInput || !gameObject.activeSelf || direction == Vector3Int.zero) return;
-
-			animator.SetInteger(DIR_X, 0);
-			animator.SetInteger(DIR_Y, 0);
-			var idle = dirToIdle[direction];
-			direction = Vector3Int.zero;
-			animator.SetInteger(RELAX_STATE, idle);
-		}
-
-
-		public async Task Move()
-		{
-			receiveInput = false;
-			var dir = new Vector3Int(animator.GetInteger(DIR_X), animator.GetInteger(DIR_Y), 0);
-			if (dir != direction)
-			{
-				animator.SetInteger(DIR_X, direction.x);
-				animator.SetInteger(DIR_Y, direction.y);
-			}
-
-			var stop = transform.position + direction;
-			while (transform.position != stop)
-			{
-				transform.position = Vector3.MoveTowards(transform.position, stop, speed);
-				await Task.Delay(1);
-			}
-			transform.position = stop;
-			receiveInput = true;
 		}
 
 
@@ -191,9 +126,9 @@ namespace BobbyCarrot.Movers
 					animator.SetInteger(DIR_X, d.x);
 					animator.SetInteger(DIR_Y, d.y);
 
-					receiveInput = false;
+					isLock = true;
 					await Task.Delay(1);
-					receiveInput = true;
+					isLock = false;
 
 					animator.SetInteger(DIR_X, 0);
 					animator.SetInteger(DIR_Y, 0);
@@ -218,7 +153,7 @@ namespace BobbyCarrot.Movers
 
 		public void Die()
 		{
-			receiveInput = false;
+			isLock = true;
 			animator.SetTrigger(DIE);
 			Destroy(gameObject, 3f);
 		}

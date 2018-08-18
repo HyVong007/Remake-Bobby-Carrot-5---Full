@@ -1,6 +1,6 @@
-﻿using System.IO;
-using UnityEngine;
-using System.Collections.Generic;
+﻿using UnityEngine;
+using BobbyCarrot.Platforms;
+using System.Threading.Tasks;
 
 
 namespace BobbyCarrot.Movers
@@ -12,13 +12,16 @@ namespace BobbyCarrot.Movers
 		public Vector3Int direction;
 
 		[System.NonSerialized]
-		public bool receiveInput = true;
+		public bool isLock;
 
 		public float speed;
 
 		public SpriteRenderer spriteRenderer => _spriteRenderer;
 
 		public Animator animator => _animator;
+
+		protected static readonly int DIR_X = Animator.StringToHash("dirX"),
+			DIR_Y = Animator.StringToHash("dirY");
 
 		[SerializeField] private SpriteRenderer _spriteRenderer;
 		[SerializeField] private Animator _animator;
@@ -37,36 +40,65 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		protected static IEnumerator<byte[]> Serialize<T>(T obj, BinaryWriter[] writer) where T : Mover
+		protected async Task<bool?> RunPlatform()
 		{
-			using (MemoryStream m = new MemoryStream())
-			using (BinaryWriter w = new BinaryWriter(m))
-			{
-				var pos = obj.transform.position;
-				w.Write(pos.x); w.Write(pos.y); w.Write(pos.z);
+			var pos = transform.position.WorldToArray();
+			var nextPos = pos + direction;
+			var array = Platform.array;
 
-				var dir = obj.direction;
-				w.Write(dir.x); w.Write(dir.y);
-				w.Write(obj.speed);
-				writer = new BinaryWriter[] { w };
-				yield return null;
-				yield return m.ToArray();
+			if (0 <= nextPos.x && nextPos.x < array.Length && 0 <= nextPos.y && nextPos.y < array[0].Length)
+			{
+				var currentPlatform = array[pos.x][pos.y].Peek();
+				var nextPlatform = array[nextPos.x][nextPos.y].Peek();
+				if (currentPlatform.CanExit(this) && nextPlatform.CanEnter(this))
+				{
+					await currentPlatform.OnExit(this);
+					if (isLock || !gameObject.activeSelf || direction == Vector3Int.zero || speed <= 0f) return null;
+
+					await Move();
+					await nextPlatform.OnEnter(this);
+					if (isLock || !gameObject.activeSelf || direction == Vector3Int.zero || speed <= 0f) return null;
+
+					return true;
+				}
 			}
+
+			return false;
 		}
 
 
-		protected static IEnumerator<T> DeSerialize<T>(byte[] data, T prefab, BinaryReader[] reader) where T : Mover
+		protected virtual async Task Move()
 		{
-			var obj = Instantiate(prefab);
-			using (MemoryStream m = new MemoryStream(data))
-			using (BinaryReader r = new BinaryReader(m))
+			isLock = true;
+			var dir = new Vector3Int(animator.GetInteger(DIR_X), animator.GetInteger(DIR_Y), 0);
+			if (dir != direction)
 			{
-				obj.transform.position = new Vector3(r.ReadSingle(), r.ReadSingle(), r.ReadSingle());
-				obj.direction = new Vector3Int(r.ReadInt32(), r.ReadInt32(), 0);
-				obj.speed = r.ReadSingle();
-				reader = new BinaryReader[] { r };
-				yield return obj;
+				animator.SetInteger(DIR_X, direction.x);
+				animator.SetInteger(DIR_Y, direction.y);
 			}
+
+			var stop = transform.position + direction;
+			while (transform.position != stop)
+			{
+				transform.position = Vector3.MoveTowards(transform.position, stop, speed);
+				await Task.Delay(1);
+			}
+			transform.position = stop;
+			isLock = false;
+		}
+
+
+		protected static Vector3Int GetInputDirection()
+		{
+			if (R.isGlobalLock) return Vector3Int.zero;
+
+			var dir = Input.GetKey(KeyCode.LeftArrow) ? Vector3Int.left :
+				Input.GetKey(KeyCode.RightArrow) ? Vector3Int.right :
+				Input.GetKey(KeyCode.UpArrow) ? Vector3Int.up :
+				Input.GetKey(KeyCode.DownArrow) ? Vector3Int.down :
+				Vector3Int.zero;
+
+			return dir;
 		}
 	}
 }

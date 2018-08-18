@@ -51,9 +51,9 @@ namespace BobbyCarrot.Platforms
 
 			var walker = (Walker)mover;
 			await walker.GotoIdle((Walker.RelaxState)Walker.dirToIdle[walker.direction]);
-			walker.receiveInput = false;
+			walker.isLock = true;
 			await beanTree.Grow();
-			walker.receiveInput = true;
+			walker.isLock = false;
 		}
 	}
 }

@@ -52,4 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   littleTree: {fileID: 21300990, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-  growSpeed: 0.24
+  growSpeed: 0.6

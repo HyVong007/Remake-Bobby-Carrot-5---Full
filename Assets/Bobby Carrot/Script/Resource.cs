@@ -33,5 +33,8 @@ namespace BobbyCarrot
 
 		public const string BOTTOM_LAYER = "Bottom", MIDDLE_LAYER = "Middle", TOP_LAYER = "Top",
 			MOVER_LAYER = "Mover", UI_LAYER = "UI";
+
+
+		public static bool isGlobalLock { get; set; }
 	}
 }

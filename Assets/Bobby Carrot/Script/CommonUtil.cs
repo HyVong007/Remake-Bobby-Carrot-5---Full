@@ -50,17 +50,5 @@ namespace BobbyCarrot
 
 
 		public static bool Contains<T>(this IReadOnlyList<T> list, T item) => ((List<T>)list).Contains(item);
-
-
-		public static Vector3Int GetInputDirection()
-		{
-			var dir = Input.GetKey(KeyCode.LeftArrow) ? Vector3Int.left :
-				Input.GetKey(KeyCode.RightArrow) ? Vector3Int.right :
-				Input.GetKey(KeyCode.UpArrow) ? Vector3Int.up :
-				Input.GetKey(KeyCode.DownArrow) ? Vector3Int.down :
-				Vector3Int.zero;
-
-			return dir;
-		}
 	}
 }

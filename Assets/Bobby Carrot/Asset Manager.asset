@@ -58,7 +58,8 @@ MonoBehaviour:
     cloudHole: {fileID: 0}
     wind: {fileID: 0}
     walker: {fileID: 0}
-    fireBall: {fileID: 0}
+    fireBall: {fileID: 114620822274693396, guid: 8964951bdbcb2854f8ec362b5d031e2c,
+      type: 2}
     grassMower: {fileID: 114843922698836104, guid: f155e77b8d73b1744986a6d8ef314d18,
       type: 2}
     flyer: {fileID: 0}

@@ -63,43 +63,46 @@ namespace BobbyCarrot.Platforms
 		}
 
 
+		public override async Task OnEnter(Mover mover)
+		{
+			if (!(mover is FireBall)) return;
+
+			// Reflect the fireball's direction
+			switch (rotation)
+			{
+				case Rotation.RIGHT_DOWN:
+					mover.direction = (mover.direction == Vector3Int.up) ? Vector3Int.right : Vector3Int.down;
+					break;
+
+				case Rotation.LEFT_DOWN:
+					mover.direction = (mover.direction == Vector3Int.up) ? Vector3Int.left : Vector3Int.down;
+					break;
+
+				case Rotation.LEFT_UP:
+					mover.direction = (mover.direction == Vector3Int.right) ? Vector3Int.up : Vector3Int.left;
+					break;
+
+				case Rotation.RIGHT_UP:
+					mover.direction = (mover.direction == Vector3Int.left) ? Vector3Int.up : Vector3Int.right;
+					break;
+			}
+		}
+
+
 		public override async Task OnExit(Mover mover)
 		{
-			if (mover is Walker)
+			if (!(mover is Walker)) return;
+
+			// Spin the rotation by clock-wise
+			switch (rotation)
 			{
-				// Spin the rotation by clock-wise
-				switch (rotation)
-				{
-					case Rotation.RIGHT_DOWN: rotation = Rotation.LEFT_DOWN; break;
-					case Rotation.LEFT_DOWN: rotation = Rotation.LEFT_UP; break;
-					case Rotation.LEFT_UP: rotation = Rotation.RIGHT_UP; break;
-					case Rotation.RIGHT_UP: rotation = Rotation.RIGHT_DOWN; break;
-				}
-
-				spriteRenderer.sprite = sprites[rotation];
+				case Rotation.RIGHT_DOWN: rotation = Rotation.LEFT_DOWN; break;
+				case Rotation.LEFT_DOWN: rotation = Rotation.LEFT_UP; break;
+				case Rotation.LEFT_UP: rotation = Rotation.RIGHT_UP; break;
+				case Rotation.RIGHT_UP: rotation = Rotation.RIGHT_DOWN; break;
 			}
-			else if (mover is FireBall)
-			{
-				// Reflect the fireball's direction
-				switch (rotation)
-				{
-					case Rotation.RIGHT_DOWN:
-						mover.direction = (mover.direction == Vector3Int.up) ? Vector3Int.right : Vector3Int.down;
-						break;
 
-					case Rotation.LEFT_DOWN:
-						mover.direction = (mover.direction == Vector3Int.up) ? Vector3Int.left : Vector3Int.down;
-						break;
-
-					case Rotation.LEFT_UP:
-						mover.direction = (mover.direction == Vector3Int.right) ? Vector3Int.up : Vector3Int.left;
-						break;
-
-					case Rotation.RIGHT_UP:
-						mover.direction = (mover.direction == Vector3Int.left) ? Vector3Int.up : Vector3Int.right;
-						break;
-				}
-			}
+			spriteRenderer.sprite = sprites[rotation];
 		}
 	}
 }

@@ -27,14 +27,14 @@ namespace BobbyCarrot.Platforms
 			if (!(mover is Walker) || (Item.count[Item.Name.SNOW_SCRATCHER] == 0)) return;
 
 			var walker = (Walker)mover;
-			walker.receiveInput = false;
+			walker.isLock = true;
 			await walker.ScratchSnow();
 
 			var pos = transform.position.WorldToArray();
 			array[pos.x][pos.y].Pop();
 			Destroy(gameObject);
 			walker.GotoIdle((Walker.RelaxState)Walker.dirToIdle[walker.direction]);
-			walker.receiveInput = true;
+			walker.isLock = false;
 		}
 	}
 }

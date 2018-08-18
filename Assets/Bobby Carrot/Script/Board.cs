@@ -77,7 +77,6 @@ namespace BobbyCarrot
 				// The Game starts here !
 				startGame = true;
 				walker.transform.position = NormalGround.startPoint.transform.position;
-				walker.receiveInput = true;
 
 
 

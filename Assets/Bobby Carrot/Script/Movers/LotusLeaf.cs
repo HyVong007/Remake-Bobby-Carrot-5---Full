@@ -19,31 +19,6 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		public static LotusLeaf DeSerialize(byte[] data)
-		{
-			BinaryReader[] r = null;
-			var d = DeSerialize(data, R.asset.prefab.lotusLeaf, r);
-			d.MoveNext();
-			var obj = d.Current;
-			obj.walker = r[0].ReadBoolean() ? Walker.instance : null;
-			d.MoveNext();
-			return obj;
-		}
-
-
-		public static byte[] Serialize(object _obj)
-		{
-			var obj = (LotusLeaf)_obj;
-			BinaryWriter[] w = null;
-			var s = Serialize(obj, w);
-			s.MoveNext();
-			w[0].Write(obj.walker != null);
-			s.MoveNext();
-			s.MoveNext();
-			return s.Current;
-		}
-
-
 		public bool CanEnter(Mover mover) =>
 			mover is Flyer || mover is FireBall || (mover is Walker && direction == Vector3Int.zero);
 
