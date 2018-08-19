@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.IO;
 using System.Collections.Generic;
-using BobbyCarrot.Platforms;
 using System.Threading.Tasks;
 
 
@@ -75,6 +73,7 @@ namespace BobbyCarrot.Movers
 		private new async void RunPlatform()
 		{
 			bool? result = await base.RunPlatform();
+
 			if (result == true)
 			{
 				// Normal finish of running from OnExit -> Move -> OnEnter

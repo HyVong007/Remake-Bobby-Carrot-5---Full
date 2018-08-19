@@ -71,8 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc3c17627a1e5044bfbe4a79b0e69ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
-  speed: 0.05
+  normalSpeed: 0.05
   _spriteRenderer: {fileID: 212298231559046758}
   _animator: {fileID: 95440214065450308}
   relaxDelaySeconds: 3

@@ -8,19 +8,22 @@ namespace BobbyCarrot.Movers
 	[RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
 	public abstract class Mover : MonoBehaviour
 	{
-		[System.NonSerialized]
+		//[System.NonSerialized]
 		public Vector3Int direction;
 
-		[System.NonSerialized]
+		//[System.NonSerialized]
 		public bool isLock;
 
+		[SerializeField] protected float normalSpeed;
+
+		//[System.NonSerialized]
 		public float speed;
 
 		public SpriteRenderer spriteRenderer => _spriteRenderer;
 
 		public Animator animator => _animator;
 
-		protected static readonly int DIR_X = Animator.StringToHash("dirX"),
+		public static readonly int DIR_X = Animator.StringToHash("dirX"),
 			DIR_Y = Animator.StringToHash("dirY");
 
 		[SerializeField] private SpriteRenderer _spriteRenderer;
@@ -40,11 +43,18 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		[System.NonSerialized]
+		private void Awake()
+		{
+			speed = normalSpeed;
+		}
+
+
+		//[System.NonSerialized]
 		public int movingDistance = 1;
 
 		protected async Task<bool?> RunPlatform()
 		{
+			bool? result = true;
 			while (movingDistance-- > 0)
 			{
 				var pos = transform.position.WorldToArray();
@@ -57,21 +67,31 @@ namespace BobbyCarrot.Movers
 					var nextPlatform = array[nextPos.x][nextPos.y].Peek();
 					if (currentPlatform.CanExit(this) && nextPlatform.CanEnter(this))
 					{
-						await currentPlatform.OnExit(this);
-						if (isLock || !gameObject.activeSelf || direction == Vector3Int.zero || speed <= 0f) return null;
+						Task task = currentPlatform.OnExit(this);
+						if (!task.IsCompleted || !gameObject.activeSelf || direction == Vector3Int.zero || speed <= 0f)
+						{
+							result = null;
+							break;
+						}
 
 						await Move();
-						await nextPlatform.OnEnter(this);
-						if (isLock || !gameObject.activeSelf || direction == Vector3Int.zero || speed <= 0f) return null;
+						task = nextPlatform.OnEnter(this);
+						if (!task.IsCompleted || !gameObject.activeSelf || direction == Vector3Int.zero || speed <= 0f)
+						{
+							result = null;
+							break;
+						}
 
 						continue;
 					}
 				}
 
-				return false;
+				result = false;
+				break;
 			}
 
-			return true;
+			if (result != null) speed = normalSpeed;
+			return result;
 		}
 
 
@@ -109,7 +129,7 @@ namespace BobbyCarrot.Movers
 			movingDistance = 1;
 
 			// TEST
-			if (dir == Vector3Int.zero) dir = TestTool.instance.direction;
+			if (TestTool.instance && dir == Vector3Int.zero) dir = TestTool.instance.direction;
 
 			return dir;
 		}

@@ -187,11 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05452ed7f1d2ca49a85599a57fd99ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
-  speed: 0.05
+  normalSpeed: 0.05
   _spriteRenderer: {fileID: 212364990641283324}
   _animator: {fileID: 95998296848600612}
-  receiveInput: 1
   smokeAnchors:
     m_keys:
     - {x: -1, y: 0, z: 0}

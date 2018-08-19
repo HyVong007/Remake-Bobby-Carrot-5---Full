@@ -24,19 +24,22 @@ MonoBehaviour:
       type: 2}
     snow: {fileID: 114168397932811124, guid: 6a1e2f9a52f0aed468018921a290aa6c, type: 2}
     waterFlow: {fileID: 0}
-    slipperyIce: {fileID: 0}
+    slipperyIce: {fileID: 114250085322289042, guid: 7ee535559587ea54494e87902d9a041c,
+      type: 2}
     item: {fileID: 114912889975238766, guid: 8cbfaf299f551d349926b17993285824, type: 2}
     grassMowerStop: {fileID: 114341812919023340, guid: 1effa12abaee92d41a10678b519f4a22,
       type: 2}
     button:
-      railRoad: {fileID: 0}
+      railRoad: {fileID: 114669705146289798, guid: 1131c2cb93185d848b01e33d3a2e7738,
+        type: 2}
       maze: {fileID: 114142080044282750, guid: e74ebc6d370a40a42a55ee5b9737033c, type: 2}
       waterFlow: {fileID: 0}
       pinWheel: {fileID: 0}
       box: {fileID: 114408083701920900, guid: 83c2abf831749ad4bbbd033d87eaf2cf, type: 2}
     trap: {fileID: 114310260575079526, guid: 2ef733d3109340b41a7e47434e1ae6d6, type: 2}
     mirror: {fileID: 114884669722022770, guid: 3cc51f6f6f96ed0478b556782761ac53, type: 2}
-    railRoad: {fileID: 0}
+    railRoad: {fileID: 114889185635598230, guid: 0bcc64f5017c58840b9d4c5058b4b222,
+      type: 2}
     maze: {fileID: 114049539409801276, guid: f36da0bc112475d43bd3415ecbbc07c8, type: 2}
     box: {fileID: 114910874775257820, guid: 46d349c32a7387e478f0aac249ee62c1, type: 2}
     grass: {fileID: 114311006574336974, guid: 1c3bb9eef88369c44bbef8ffdc4de6fa, type: 2}
