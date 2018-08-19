@@ -107,6 +107,10 @@ namespace BobbyCarrot.Movers
 				Vector3Int.zero;
 
 			movingDistance = 1;
+
+			// TEST
+			if (dir == Vector3Int.zero) dir = TestTool.instance.direction;
+
 			return dir;
 		}
 	}
