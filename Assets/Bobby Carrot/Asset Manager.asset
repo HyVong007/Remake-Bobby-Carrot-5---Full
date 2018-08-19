@@ -23,7 +23,8 @@ MonoBehaviour:
     normalGround: {fileID: 114269731650341846, guid: 8311d8d82cc9db2498708abfbe526fb0,
       type: 2}
     snow: {fileID: 114168397932811124, guid: 6a1e2f9a52f0aed468018921a290aa6c, type: 2}
-    waterFlow: {fileID: 0}
+    waterFlow: {fileID: 114744765207459032, guid: d3cd1c5b665d8fc4497afaf2cbf4416f,
+      type: 2}
     slipperyIce: {fileID: 114250085322289042, guid: 7ee535559587ea54494e87902d9a041c,
       type: 2}
     item: {fileID: 114912889975238766, guid: 8cbfaf299f551d349926b17993285824, type: 2}
