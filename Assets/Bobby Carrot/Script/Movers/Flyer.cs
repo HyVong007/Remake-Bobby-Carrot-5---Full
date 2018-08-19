@@ -30,6 +30,12 @@ namespace BobbyCarrot.Movers
 		}
 
 
+		private void OnEnable()
+		{
+			movingDistance = 1;
+		}
+
+
 		private Task runningPlatform;
 
 		private void Update()
@@ -44,17 +50,17 @@ namespace BobbyCarrot.Movers
 			bool? result = await base.RunPlatform();
 			if (result == true)
 			{
-
+				movingDistance = 1;
 			}
 			else if (result == false)
 			{
 				// The flyer has landed
-				var x = Landing();
+				Landing();
 			}
 		}
 
 
-		public async Task Landing()
+		public async void Landing()
 		{
 			gameObject.SetActive(false);
 			var walker = Walker.instance;
@@ -74,6 +80,7 @@ namespace BobbyCarrot.Movers
 
 			// Walker có thể/ có khả năng đi thêm 1 bước nữa (do quán tính) theo direction
 			// Tự động chạy Walker.Update()
+			walker.movingDistance = 1;
 		}
 
 

@@ -40,30 +40,38 @@ namespace BobbyCarrot.Movers
 		}
 
 
+		[System.NonSerialized]
+		public int movingDistance = 1;
+
 		protected async Task<bool?> RunPlatform()
 		{
-			var pos = transform.position.WorldToArray();
-			var nextPos = pos + direction;
-			var array = Platform.array;
-
-			if (0 <= nextPos.x && nextPos.x < array.Length && 0 <= nextPos.y && nextPos.y < array[0].Length)
+			while (movingDistance-- > 0)
 			{
-				var currentPlatform = array[pos.x][pos.y].Peek();
-				var nextPlatform = array[nextPos.x][nextPos.y].Peek();
-				if (currentPlatform.CanExit(this) && nextPlatform.CanEnter(this))
+				var pos = transform.position.WorldToArray();
+				var nextPos = pos + direction;
+				var array = Platform.array;
+
+				if (0 <= nextPos.x && nextPos.x < array.Length && 0 <= nextPos.y && nextPos.y < array[0].Length)
 				{
-					await currentPlatform.OnExit(this);
-					if (isLock || !gameObject.activeSelf || direction == Vector3Int.zero || speed <= 0f) return null;
+					var currentPlatform = array[pos.x][pos.y].Peek();
+					var nextPlatform = array[nextPos.x][nextPos.y].Peek();
+					if (currentPlatform.CanExit(this) && nextPlatform.CanEnter(this))
+					{
+						await currentPlatform.OnExit(this);
+						if (isLock || !gameObject.activeSelf || direction == Vector3Int.zero || speed <= 0f) return null;
 
-					await Move();
-					await nextPlatform.OnEnter(this);
-					if (isLock || !gameObject.activeSelf || direction == Vector3Int.zero || speed <= 0f) return null;
+						await Move();
+						await nextPlatform.OnEnter(this);
+						if (isLock || !gameObject.activeSelf || direction == Vector3Int.zero || speed <= 0f) return null;
 
-					return true;
+						continue;
+					}
 				}
+
+				return false;
 			}
 
-			return false;
+			return true;
 		}
 
 
@@ -88,7 +96,7 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		protected static Vector3Int GetInputDirection()
+		protected Vector3Int GetInputDirection()
 		{
 			if (R.isGlobalLock) return Vector3Int.zero;
 
@@ -98,6 +106,7 @@ namespace BobbyCarrot.Movers
 				Input.GetKey(KeyCode.DownArrow) ? Vector3Int.down :
 				Vector3Int.zero;
 
+			movingDistance = 1;
 			return dir;
 		}
 	}

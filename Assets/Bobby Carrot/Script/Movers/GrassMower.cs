@@ -61,19 +61,6 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		private async void RunPlatform(IPlatformProcessor currentPlatform, IPlatformProcessor nextPlatform)
-		{
-			await currentPlatform.OnExit(this);
-			if (isLock || !gameObject.activeSelf) return;
-
-			await Move();
-			await nextPlatform.OnEnter(this);
-			if (isLock || !gameObject.activeSelf) return;
-
-			direction = Vector3Int.zero;
-		}
-
-
 		public void GotoIdle(Vector3Int direction)
 		{
 			var dir = new Vector3Int(animator.GetInteger(DIR_X), animator.GetInteger(DIR_Y), 0);

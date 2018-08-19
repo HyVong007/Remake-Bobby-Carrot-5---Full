@@ -8,7 +8,7 @@ namespace BobbyCarrot.Platforms
 	public class Wind : Platform
 	{
 		public bool isStop { get; private set; }
-		[SerializeField] Sprite windSource, windStop;
+		[SerializeField] Sprite windStop;
 
 
 		public static new Wind DeSerialize(int ID, Vector3 wPos, bool use = true)
@@ -17,6 +17,13 @@ namespace BobbyCarrot.Platforms
 			wind.isStop = (ID == 245);
 			if (use) wind.Use();
 			return wind;
+		}
+
+
+		private void Start()
+		{
+			if (isStop) spriteRenderer.sprite = windStop;
+			else animator.enabled = true;
 		}
 
 
@@ -34,21 +41,23 @@ namespace BobbyCarrot.Platforms
 
 		public override async Task OnEnter(Mover mover)
 		{
-			if (isStop || mover is Flyer || mover is FireBall) return;
-
-			var walker = (Walker)mover;
-			walker.gameObject.SetActive(false);
-			var flyer = Flyer.instance;
-			if (!flyer)
+			if (isStop && mover is Flyer) Flyer.instance.Landing();
+			else if (!isStop && mover is Walker)
 			{
-				flyer = Instantiate(R.asset.prefab.flyer);
-				flyer.transform.parent = Board.instance.moverAnchor;
-			}
+				var walker = (Walker)mover;
+				walker.gameObject.SetActive(false);
+				var flyer = Flyer.instance;
+				if (!flyer)
+				{
+					flyer = Instantiate(R.asset.prefab.flyer);
+					flyer.transform.parent = Board.instance.moverAnchor;
+				}
 
-			flyer.transform.position = transform.position;
-			flyer.direction = walker.direction;
-			flyer.speed = walker.speed;
-			flyer.gameObject.SetActive(true);
+				flyer.transform.position = transform.position;
+				flyer.direction = walker.direction;
+				flyer.speed = walker.speed;
+				flyer.gameObject.SetActive(true);
+			}
 		}
 	}
 }

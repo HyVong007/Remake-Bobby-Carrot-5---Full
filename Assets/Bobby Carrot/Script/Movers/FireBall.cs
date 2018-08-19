@@ -25,6 +25,12 @@ namespace BobbyCarrot.Movers
 		}
 
 
+		private void OnEnable()
+		{
+			movingDistance = 1;
+		}
+
+
 		private Task runningPlatform;
 
 		private void Update()
@@ -40,6 +46,7 @@ namespace BobbyCarrot.Movers
 			if (result == true)
 			{
 				// Normal finish of running OnExit -> Move -> OnEnter
+				movingDistance = 1;
 			}
 			else if (result == false)
 			{

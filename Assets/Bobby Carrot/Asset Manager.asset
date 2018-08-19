@@ -56,13 +56,13 @@ MonoBehaviour:
     lotusLeaf: {fileID: 0}
     rock: {fileID: 114537467853167864, guid: 1457e12ecc622ae40954d31e756b1894, type: 2}
     cloudHole: {fileID: 0}
-    wind: {fileID: 0}
+    wind: {fileID: 114521459273113708, guid: 8e44de79ac5f23d44b544faf18c9a288, type: 2}
     walker: {fileID: 0}
     fireBall: {fileID: 114620822274693396, guid: 8964951bdbcb2854f8ec362b5d031e2c,
       type: 2}
     grassMower: {fileID: 114843922698836104, guid: f155e77b8d73b1744986a6d8ef314d18,
       type: 2}
-    flyer: {fileID: 0}
+    flyer: {fileID: 114794899373873020, guid: 49f6946148a15a249acfd78a55e364fb, type: 2}
     dragon: {fileID: 114358012080538388, guid: aaf06e1e1945f154f89c0f6198077fa1, type: 2}
     dragonNode: {fileID: 114262264303799348, guid: 5cc866efd4ff91b4f9d667d8874ac0db,
       type: 2}
