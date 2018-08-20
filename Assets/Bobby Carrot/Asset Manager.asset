@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: Asset Manager
   m_EditorClassIdentifier: 
   anim:
-    star: {fileID: 0}
-    water: {fileID: 0}
-    waterFall: {fileID: 0}
-    end: {fileID: 0}
-    goldenCoin: {fileID: 0}
+    star: {fileID: 9100000, guid: 0113beb41dace2442868b1a1299c2ec7, type: 2}
+    water: {fileID: 9100000, guid: 5f730dd5ea739804493efe5e85cce65b, type: 2}
+    waterFall: {fileID: 9100000, guid: abfea8b2249493a42bfce79e3f20ea56, type: 2}
+    end: {fileID: 9100000, guid: d70200f3821366a43baff9016a413be5, type: 2}
+    goldenCoin: {fileID: 9100000, guid: 22e83860f8dd53c40a915d9ae518c9d5, type: 2}
   prefab:
     normalObstacle: {fileID: 114894063026292308, guid: 5b585c18e8e6baf4b8bbc078186e0c01,
       type: 2}
@@ -34,7 +34,8 @@ MonoBehaviour:
       railRoad: {fileID: 114669705146289798, guid: 1131c2cb93185d848b01e33d3a2e7738,
         type: 2}
       maze: {fileID: 114142080044282750, guid: e74ebc6d370a40a42a55ee5b9737033c, type: 2}
-      waterFlow: {fileID: 0}
+      waterFlow: {fileID: 114904905441897190, guid: 9fd315e90489b54409197f6e22ec5948,
+        type: 2}
       pinWheel: {fileID: 0}
       box: {fileID: 114408083701920900, guid: 83c2abf831749ad4bbbd033d87eaf2cf, type: 2}
     trap: {fileID: 114310260575079526, guid: 2ef733d3109340b41a7e47434e1ae6d6, type: 2}
@@ -57,11 +58,12 @@ MonoBehaviour:
     mobileCloud: {fileID: 0}
     icyBlock: {fileID: 114119362715024486, guid: 67dac73800ad0be48978b03aef789a8b,
       type: 2}
-    lotusLeaf: {fileID: 0}
+    lotusLeaf: {fileID: 114374430715943500, guid: d7d1721362b0da94aa1456f2a502cab0,
+      type: 2}
     rock: {fileID: 114537467853167864, guid: 1457e12ecc622ae40954d31e756b1894, type: 2}
     cloudHole: {fileID: 0}
     wind: {fileID: 114521459273113708, guid: 8e44de79ac5f23d44b544faf18c9a288, type: 2}
-    walker: {fileID: 0}
+    walker: {fileID: 114011989537932722, guid: 7cfced744dbe2264ba167860699eb491, type: 2}
     fireBall: {fileID: 114620822274693396, guid: 8964951bdbcb2854f8ec362b5d031e2c,
       type: 2}
     grassMower: {fileID: 114843922698836104, guid: f155e77b8d73b1744986a6d8ef314d18,

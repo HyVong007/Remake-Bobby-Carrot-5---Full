@@ -49,7 +49,7 @@ namespace BobbyCarrot.Platforms
 
 		public override async Task OnEnter(Mover mover)
 		{
-			if (!(mover is Walker) || isOn) return;
+			if (mover is Flyer || mover is FireBall || isOn) return;
 
 			foreach (var button in list) button.ChangeState();
 			foreach (var railRoal in RailRoad.list) railRoal.ChangeState();

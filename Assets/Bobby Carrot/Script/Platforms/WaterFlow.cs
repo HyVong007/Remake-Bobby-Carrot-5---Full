@@ -16,6 +16,10 @@ namespace BobbyCarrot.Platforms
 		static WaterFlow()
 		{
 			Board.onReset += () => { list.Clear(); };
+			Board.onStart += () =>
+			  {
+				  foreach (var waterFlow in list) CheckLotusLeaf(waterFlow);
+			  };
 		}
 
 
@@ -65,6 +69,20 @@ namespace BobbyCarrot.Platforms
 			direction *= -1;
 			animator.SetInteger(Mover.DIR_X, direction.x);
 			animator.SetInteger(Mover.DIR_Y, direction.y);
+			CheckLotusLeaf(this);
+		}
+
+
+		private static void CheckLotusLeaf(WaterFlow waterFlow)
+		{
+			var pos = waterFlow.transform.position.WorldToArray();
+			var platform = array[pos.x][pos.y].Peek();
+			if (platform is LotusLeaf)
+			{
+				var lotusLeaf = (LotusLeaf)platform;
+				lotusLeaf.direction = waterFlow.direction;
+				lotusLeaf.enabled = true;
+			}
 		}
 
 
@@ -85,29 +103,6 @@ namespace BobbyCarrot.Platforms
 			var lotusLeaf = (LotusLeaf)mover;
 			lotusLeaf.direction = direction;
 			lotusLeaf.enabled = true;
-		}
-
-
-		private static bool startGame;
-
-		private void Update()
-		{
-			if (!startGame)
-			{
-				startGame = true;
-				foreach (var waterFlow in list)
-				{
-					var pos = waterFlow.transform.position.WorldToArray();
-					var platform = array[pos.x][pos.y].Peek();
-					if (!(platform is LotusLeaf)) continue;
-
-					var lotusLeaf = (LotusLeaf)platform;
-					lotusLeaf.direction = waterFlow.direction;
-					lotusLeaf.enabled = true;
-				}
-			}
-
-			enabled = false;
 		}
 	}
 }

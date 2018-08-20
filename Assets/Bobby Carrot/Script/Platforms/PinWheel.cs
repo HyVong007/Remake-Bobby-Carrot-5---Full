@@ -8,7 +8,7 @@ namespace BobbyCarrot.Platforms
 	{
 		public Color color { get; private set; }
 
-		public Vector2Int direction { get; private set; }
+		public Vector3Int direction { get; private set; }
 
 		public bool isOn { get; private set; }
 

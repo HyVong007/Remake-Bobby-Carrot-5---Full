@@ -65,6 +65,7 @@ namespace BobbyCarrot.Movers
 				{
 					var currentPlatform = array[pos.x][pos.y].Peek();
 					var nextPlatform = array[nextPos.x][nextPos.y].Peek();
+
 					if (currentPlatform.CanExit(this) && nextPlatform.CanEnter(this))
 					{
 						Task task = currentPlatform.OnExit(this);

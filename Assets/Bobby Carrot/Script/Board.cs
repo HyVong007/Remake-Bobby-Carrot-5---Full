@@ -9,7 +9,7 @@ namespace BobbyCarrot
 	{
 		public static Board instance { get; private set; }
 
-		public static event System.Action onReset;
+		public static event System.Action onReset, onStart;
 
 		public Transform platformAnchor => _platformAnchor;
 
@@ -76,6 +76,7 @@ namespace BobbyCarrot
 			{
 				// The Game starts here !
 				startGame = true;
+				onStart();
 				walker.transform.position = NormalGround.startPoint.transform.position;
 
 
