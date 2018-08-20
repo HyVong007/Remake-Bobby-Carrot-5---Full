@@ -3,7 +3,7 @@
 
 [CustomPropertyDrawer(typeof(Vector3Int_Sprite_Dict))]
 [CustomPropertyDrawer(typeof(PinWheelColor_Sprite_Dict))]
-[CustomPropertyDrawer(typeof(PinWheelColor_Anim_Dict))]
+[CustomPropertyDrawer(typeof(PinWheelColor_GameObject_Dict))]
 [CustomPropertyDrawer(typeof(MazeRotation_Sprite_Dict))]
 [CustomPropertyDrawer(typeof(CarrotState_Sprite_Dict))]
 [CustomPropertyDrawer(typeof(ItemName_Sprite_Dict))]

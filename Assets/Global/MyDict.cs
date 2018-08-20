@@ -9,9 +9,6 @@ public class Vector3Int_Sprite_Dict : SerializableDictionary<Vector3Int, Sprite>
 public class PinWheelColor_Sprite_Dict : SerializableDictionary<PinWheel.Color, Sprite> { }
 
 [System.Serializable]
-public class PinWheelColor_Anim_Dict : SerializableDictionary<PinWheel.Color, RuntimeAnimatorController> { }
-
-[System.Serializable]
 public class MazeRotation_Sprite_Dict : SerializableDictionary<Maze.Rotation, Sprite> { }
 
 [System.Serializable]
@@ -31,3 +28,6 @@ public class BeanTreeNodeName_Sprite_Dict : SerializableDictionary<BeanTreeNode.
 
 [System.Serializable]
 public class DragonNodeName_Sprite_Dict : SerializableDictionary<DragonNode.Name, Sprite> { }
+
+[System.Serializable]
+public class PinWheelColor_GameObject_Dict : SerializableDictionary<PinWheel.Color, GameObject> { }

@@ -38,6 +38,7 @@ namespace BobbyCarrot.Movers
 		private void Start()
 		{
 			spriteRenderer.sprite = sprites[color];
+			enabled = false;
 		}
 
 
@@ -51,10 +52,18 @@ namespace BobbyCarrot.Movers
 		public bool CanExit(Mover mover) => CanEnter(mover);
 
 
-		public async Task OnExit(Mover mover) { }
+		public async Task OnEnter(Mover mover)
+		{
+			if (!(mover is Walker) && !(mover is GrassMower)) return;
+			mover.transform.parent = transform;
+		}
 
 
-		public async Task OnEnter(Mover mover) { }
+		public async Task OnExit(Mover mover)
+		{
+			if (!(mover is Walker) && !(mover is GrassMower)) return;
+			mover.transform.parent = Board.instance.moverAnchor;
+		}
 
 
 		public void Use(Vector3Int? pos = null)
@@ -63,6 +72,45 @@ namespace BobbyCarrot.Movers
 			var p = pos.Value;
 			Platform.array[p.x][p.y].Push(this);
 			transform.parent = Board.instance.moverAnchor;
+		}
+
+
+		private Task runningPlatform;
+
+		private void Update()
+		{
+			if (!isLock && runningPlatform?.IsCompleted != false)
+				runningPlatform = RunPlatform();
+		}
+
+
+		private new async Task RunPlatform()
+		{
+			var pos = transform.position.WorldToArray();
+			var stack = Platform.array[pos.x][pos.y];
+			stack.Pop();
+			bool? result = await base.RunPlatform();
+
+			if (result == true)
+			{
+				movingDistance = 1;
+			}
+			else if (result == false)
+			{
+				movingDistance = 1;
+				stack.Push(this);
+				direction = Vector3Int.zero;
+				R.isGlobalLock = false;
+				enabled = false;
+			}
+		}
+
+
+		protected override async Task Move()
+		{
+			var stop = transform.position.WorldToArray() + direction;
+			Platform.array[stop.x][stop.y].Push(this);
+			await base.Move();
 		}
 	}
 }

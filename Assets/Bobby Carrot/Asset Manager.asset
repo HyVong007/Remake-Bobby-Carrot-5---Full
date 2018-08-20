@@ -36,7 +36,8 @@ MonoBehaviour:
       maze: {fileID: 114142080044282750, guid: e74ebc6d370a40a42a55ee5b9737033c, type: 2}
       waterFlow: {fileID: 114904905441897190, guid: 9fd315e90489b54409197f6e22ec5948,
         type: 2}
-      pinWheel: {fileID: 0}
+      pinWheel: {fileID: 114148123571624300, guid: 93b1f741589fe3f43b1f1c9e1d66e0ac,
+        type: 2}
       box: {fileID: 114408083701920900, guid: 83c2abf831749ad4bbbd033d87eaf2cf, type: 2}
     trap: {fileID: 114310260575079526, guid: 2ef733d3109340b41a7e47434e1ae6d6, type: 2}
     mirror: {fileID: 114884669722022770, guid: 3cc51f6f6f96ed0478b556782761ac53, type: 2}
@@ -49,13 +50,15 @@ MonoBehaviour:
     easterEgg: {fileID: 114770561901825154, guid: 5d9518847dc88dd4a84678c8f3eb446f,
       type: 2}
     locker: {fileID: 114074843416765948, guid: 5049f2afef44fbd40907754a9839b256, type: 2}
-    pinWheel: {fileID: 0}
+    pinWheel: {fileID: 114787551356120908, guid: ac056dc068dc9674cbad6895144b9912,
+      type: 2}
     wood: {fileID: 114375879885476618, guid: 885c322fdbd4e6b46b6baf83d100a995, type: 2}
     beanTree: {fileID: 114352893468703012, guid: 0c89956e7f79cdc45b730a55087964b2,
       type: 2}
     beanTreeNode: {fileID: 114324743180800556, guid: 8995a09fbfd70854a8ef6e40fda8152b,
       type: 2}
-    mobileCloud: {fileID: 0}
+    mobileCloud: {fileID: 114423155045768648, guid: c22be7c444e06e9428ef352d5c4d7b1e,
+      type: 2}
     icyBlock: {fileID: 114119362715024486, guid: 67dac73800ad0be48978b03aef789a8b,
       type: 2}
     lotusLeaf: {fileID: 114374430715943500, guid: d7d1721362b0da94aa1456f2a502cab0,
