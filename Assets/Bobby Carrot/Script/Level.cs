@@ -68,7 +68,7 @@ namespace BobbyCarrot
 			using (BinaryReader r = new BinaryReader(m))
 			{
 				bool hasBottom = r.ReadBoolean();
-				level.bottomMap.gameObject.SetActive(hasBottom);
+				//level.bottomMap.gameObject.SetActive(hasBottom);
 				var size = new Vector2Int(r.ReadInt32(), r.ReadInt32());
 				level.topArray = new short[size.x][];
 				level.middleArray = new short[size.x][];

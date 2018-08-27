@@ -7,15 +7,12 @@ namespace BobbyCarrot.Platforms
 {
 	public class Rock : Platform
 	{
-		[SerializeField] private float SPEED_TO_DESTROY;
-
-
 		public static new Rock DeSerialize(int ID, Vector3 wPos, bool use = true) =>
-			DeSerialize(ID, wPos, R.asset.prefab.rock);
+			Platform.DeSerialize(ID, wPos, R.asset.prefab.rock);
 
 
 		public override bool CanEnter(Mover mover) =>
-			mover is Flyer || mover is FireBall || (mover is GrassMower && mover.speed >= SPEED_TO_DESTROY);
+			mover is Flyer || mover is FireBall || (mover is GrassMower && mover.speed >= RailRoad.HIGH_SPEED);
 
 
 		public override async Task OnEnter(Mover mover)

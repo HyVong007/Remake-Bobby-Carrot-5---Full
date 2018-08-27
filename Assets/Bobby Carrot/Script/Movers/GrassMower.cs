@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.IO;
 using System.Threading.Tasks;
-using BobbyCarrot.Platforms;
 using System.Threading;
+using BobbyCarrot.Util;
 
 
 namespace BobbyCarrot.Movers
@@ -87,6 +86,14 @@ namespace BobbyCarrot.Movers
 				Destroy(Instantiate(smokePrefab, currentSmokeAnchor.position, Quaternion.identity), smokeLifeTime);
 				await Task.Delay(delayMS);
 			}
+		}
+
+
+		protected override async Task Move(bool focusCamera = false)
+		{
+			currentSmokeAnchor = smokeAnchors[direction];
+			await base.Move();
+			await CameraController.instance.Focus(transform.position, 0.1f);
 		}
 	}
 }

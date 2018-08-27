@@ -13,7 +13,7 @@ namespace BobbyCarrot.Platforms
 
 		public bool isOn { get; private set; }
 
-		protected static readonly IReadOnlyDictionary<PinWheel.Color, List<PinWheelButton>> dict = new Dictionary<PinWheel.Color, List<PinWheelButton>>()
+		private static readonly IReadOnlyDictionary<PinWheel.Color, List<PinWheelButton>> dict = new Dictionary<PinWheel.Color, List<PinWheelButton>>()
 		{
 			[PinWheel.Color.GREEN] = new List<PinWheelButton>(),
 			[PinWheel.Color.RED] = new List<PinWheelButton>(),
@@ -21,7 +21,7 @@ namespace BobbyCarrot.Platforms
 			[PinWheel.Color.YELLOW] = new List<PinWheelButton>()
 		};
 
-		[SerializeField] private PinWheelColor_Sprite_Dict ONSprites, OFFSprites;
+		[SerializeField] private PinWheelColor_Sprite_Dict ONSprite, OFFSprite;
 		private Sprite ON, OFF;
 
 
@@ -107,7 +107,7 @@ namespace BobbyCarrot.Platforms
 
 		private void Start()
 		{
-			ON = ONSprites[color]; OFF = OFFSprites[color];
+			ON = ONSprite[color]; OFF = OFFSprite[color];
 			spriteRenderer.sprite = isOn ? ON : OFF;
 		}
 

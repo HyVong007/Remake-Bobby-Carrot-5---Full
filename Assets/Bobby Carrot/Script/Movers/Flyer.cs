@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Threading.Tasks;
 using BobbyCarrot.Platforms;
+using BobbyCarrot.Util;
 
 
 namespace BobbyCarrot.Movers
@@ -84,10 +85,11 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		protected override Task Move()
+		protected override async Task Move(bool focusCamera = false)
 		{
 			spriteRenderer.sprite = dirSprites[direction];
-			return base.Move();
+			await base.Move();
+			await CameraController.instance.Focus(transform.position, 0.1f);
 		}
 	}
 }

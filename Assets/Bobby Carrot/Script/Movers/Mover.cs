@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using BobbyCarrot.Platforms;
 using System.Threading.Tasks;
+using BobbyCarrot.Util;
 
 
 namespace BobbyCarrot.Movers
@@ -8,15 +9,15 @@ namespace BobbyCarrot.Movers
 	[RequireComponent(typeof(SpriteRenderer), typeof(Animator))]
 	public abstract class Mover : MonoBehaviour
 	{
-		//[System.NonSerialized]
+		[System.NonSerialized]
 		public Vector3Int direction;
 
-		//[System.NonSerialized]
+		[System.NonSerialized]
 		public bool isLock;
 
 		[SerializeField] protected float normalSpeed;
 
-		//[System.NonSerialized]
+		[System.NonSerialized]
 		public float speed;
 
 		public SpriteRenderer spriteRenderer => _spriteRenderer;
@@ -96,7 +97,7 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		protected virtual async Task Move()
+		protected virtual async Task Move(bool focusCamera = false)
 		{
 			isLock = true;
 			var dir = new Vector3Int(animator.GetInteger(DIR_X), animator.GetInteger(DIR_Y), 0);
@@ -107,9 +108,11 @@ namespace BobbyCarrot.Movers
 			}
 
 			var stop = transform.position + direction;
+			var camCtrl = CameraController.instance;
 			while (transform.position != stop)
 			{
-				transform.position = Vector3.MoveTowards(transform.position, stop, speed);
+				var p = transform.position = Vector3.MoveTowards(transform.position, stop, speed);
+				if (focusCamera) camCtrl.Focus(p);
 				await Task.Delay(1);
 			}
 			transform.position = stop;

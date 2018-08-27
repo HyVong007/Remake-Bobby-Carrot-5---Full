@@ -9,32 +9,32 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1832217654384058}
+  m_RootGameObject: {fileID: 1355095243445870}
   m_IsPrefabAsset: 1
---- !u!1 &1832217654384058
+--- !u!1 &1355095243445870
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4063923971615958}
-  - component: {fileID: 114148123571624300}
-  - component: {fileID: 212784147618168032}
-  - component: {fileID: 95784726513071358}
+  - component: {fileID: 4376260876605904}
+  - component: {fileID: 114213358268057322}
+  - component: {fileID: 212723245168061248}
+  - component: {fileID: 95226882325728954}
   m_Layer: 0
-  m_Name: PinWheel Button
+  m_Name: Cloud Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4063923971615958
+--- !u!4 &4376260876605904
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832217654384058}
+  m_GameObject: {fileID: 1355095243445870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -42,13 +42,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95784726513071358
+--- !u!95 &95226882325728954
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832217654384058}
+  m_GameObject: {fileID: 1355095243445870}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
@@ -60,39 +60,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114148123571624300
+--- !u!114 &114213358268057322
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832217654384058}
+  m_GameObject: {fileID: 1355095243445870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0235eb09e399194b833d7a36ebb3dc0, type: 3}
+  m_Script: {fileID: 11500000, guid: a6a63ddd843783947a47350b161b77ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 212784147618168032}
-  _animator: {fileID: 95784726513071358}
-  ONSprite:
-    m_keys: 00000000010000000200000003000000
+  _spriteRenderer: {fileID: 212723245168061248}
+  _animator: {fileID: 95226882325728954}
+  sprites:
+    m_keys: 010000000200000003000000
     m_values:
-    - {fileID: 21300846, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-    - {fileID: 21300850, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-    - {fileID: 21300854, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-    - {fileID: 21300858, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-  OFFSprite:
-    m_keys: 00000000010000000200000003000000
-    m_values:
-    - {fileID: 21300848, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-    - {fileID: 21300852, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-    - {fileID: 21300856, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
-    - {fileID: 21300860, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
---- !u!212 &212784147618168032
+    - {fileID: 21300992, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300996, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+    - {fileID: 21300994, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+--- !u!212 &212723245168061248
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1832217654384058}
+  m_GameObject: {fileID: 1355095243445870}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -119,10 +111,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1406001259
-  m_SortingLayer: 1
+  m_SortingLayerID: 1873255195
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300846, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+  m_Sprite: {fileID: 21300996, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

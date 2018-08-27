@@ -13,6 +13,7 @@ namespace BobbyCarrot.Platforms
 		public new Name name { get; private set; }
 
 		[SerializeField] private ItemName_Sprite_Dict sprites;
+		[SerializeField] private NormalGround emptyGround;
 
 		public static readonly Dictionary<Name, int> count = new Dictionary<Name, int>();
 
@@ -42,6 +43,19 @@ namespace BobbyCarrot.Platforms
 			++count[name];
 			var pos = transform.position.WorldToArray();
 			array[pos.x][pos.y].Pop();
+			switch (name)
+			{
+				case Name.BLUE_MAP:
+				case Name.MAGNIFYING_GLASS:
+				case Name.MUSIC:
+				case Name.ORANGE_MAP:
+				case Name.SHOE:
+				case Name.SPEAKER:
+					emptyGround.gameObject.SetActive(true);
+					emptyGround.Use();
+					break;
+			}
+
 			Destroy(gameObject);
 			cts.Cancel();
 			blinker?.SetActive(false);

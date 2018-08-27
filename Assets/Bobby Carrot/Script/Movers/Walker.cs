@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BobbyCarrot.Util;
 
 
 namespace BobbyCarrot.Movers
@@ -155,6 +156,12 @@ namespace BobbyCarrot.Movers
 			isLock = true;
 			animator.SetTrigger(DIE);
 			Destroy(gameObject, 3f);
+		}
+
+
+		protected override async Task Move(bool focusCamera = false)
+		{
+			await base.Move(true);
 		}
 	}
 }

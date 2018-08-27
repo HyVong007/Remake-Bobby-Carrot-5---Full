@@ -106,7 +106,7 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		protected override async Task Move()
+		protected override async Task Move(bool focusCamera = false)
 		{
 			var stop = transform.position.WorldToArray() + direction;
 			Platform.array[stop.x][stop.y].Push(this);

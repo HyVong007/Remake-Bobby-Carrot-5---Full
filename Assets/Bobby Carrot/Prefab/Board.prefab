@@ -159,9 +159,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc3c17627a1e5044bfbe4a79b0e69ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0, z: 0}
+  isLock: 0
   normalSpeed: 0.05
+  speed: 0
   _spriteRenderer: {fileID: 212177566821217902}
   _animator: {fileID: 95665447377160408}
+  movingDistance: 1
   relaxDelaySeconds: 3
 --- !u!114 &114977734120068608
 MonoBehaviour:

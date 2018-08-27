@@ -64,7 +64,8 @@ MonoBehaviour:
     lotusLeaf: {fileID: 114374430715943500, guid: d7d1721362b0da94aa1456f2a502cab0,
       type: 2}
     rock: {fileID: 114537467853167864, guid: 1457e12ecc622ae40954d31e756b1894, type: 2}
-    cloudHole: {fileID: 0}
+    cloudHole: {fileID: 114213358268057322, guid: 76afae2709db1f649982c705543d4d12,
+      type: 2}
     wind: {fileID: 114521459273113708, guid: 8e44de79ac5f23d44b544faf18c9a288, type: 2}
     walker: {fileID: 114011989537932722, guid: 7cfced744dbe2264ba167860699eb491, type: 2}
     fireBall: {fileID: 114620822274693396, guid: 8964951bdbcb2854f8ec362b5d031e2c,

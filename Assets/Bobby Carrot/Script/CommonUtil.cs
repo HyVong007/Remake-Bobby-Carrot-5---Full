@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -50,5 +51,11 @@ namespace BobbyCarrot
 
 
 		public static bool Contains<T>(this IReadOnlyList<T> list, T item) => ((List<T>)list).Contains(item);
+
+
+		public static async Task WaitForFrame(int frame)
+		{
+			for (int i = 0; i < frame; ++i) await Task.Delay(1);
+		}
 	}
 }

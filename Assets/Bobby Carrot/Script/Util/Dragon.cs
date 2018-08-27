@@ -69,6 +69,7 @@ namespace BobbyCarrot.Util
 			fireBall.gameObject.SetActive(true);
 
 			while (fireBall.gameObject.activeSelf) await Task.Delay(1);
+			await CameraController.instance.Focus(nodes[2].transform.position, 0.1f);
 			head.animator.enabled = false;
 			head.spriteRenderer.sprite = headSprite;
 		}

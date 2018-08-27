@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using BobbyCarrot.Util;
+using System.Threading.Tasks;
 
 
 namespace BobbyCarrot.Movers
@@ -53,6 +54,13 @@ namespace BobbyCarrot.Movers
 				// Cannot Go
 				gameObject.SetActive(false);
 			}
+		}
+
+
+		protected override async Task Move(bool focusCamera = false)
+		{
+			await base.Move();
+			await CameraController.instance.Focus(transform.position, 0.1f);
 		}
 	}
 }
