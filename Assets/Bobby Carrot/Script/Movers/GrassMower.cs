@@ -89,11 +89,10 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		protected override async Task Move(bool focusCamera = false)
+		protected override async Task Move()
 		{
 			currentSmokeAnchor = smokeAnchors[direction];
 			await base.Move();
-			await CameraController.instance.Focus(transform.position, 0.1f);
 		}
 	}
 }

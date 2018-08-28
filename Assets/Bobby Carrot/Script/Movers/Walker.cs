@@ -157,11 +157,5 @@ namespace BobbyCarrot.Movers
 			animator.SetTrigger(DIE);
 			Destroy(gameObject, 3f);
 		}
-
-
-		protected override async Task Move(bool focusCamera = false)
-		{
-			await base.Move(true);
-		}
 	}
 }

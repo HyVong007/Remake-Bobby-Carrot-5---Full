@@ -50,7 +50,7 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		//[System.NonSerialized]
+		[System.NonSerialized]
 		public int movingDistance = 1;
 
 		protected async Task<bool?> RunPlatform()
@@ -97,7 +97,7 @@ namespace BobbyCarrot.Movers
 		}
 
 
-		protected virtual async Task Move(bool focusCamera = false)
+		protected virtual async Task Move()
 		{
 			isLock = true;
 			var dir = new Vector3Int(animator.GetInteger(DIR_X), animator.GetInteger(DIR_Y), 0);
@@ -111,8 +111,7 @@ namespace BobbyCarrot.Movers
 			var camCtrl = CameraController.instance;
 			while (transform.position != stop)
 			{
-				var p = transform.position = Vector3.MoveTowards(transform.position, stop, speed);
-				if (focusCamera) camCtrl.Focus(p);
+				transform.position = Vector3.MoveTowards(transform.position, stop, speed);
 				await Task.Delay(1);
 			}
 			transform.position = stop;

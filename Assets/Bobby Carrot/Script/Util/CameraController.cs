@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using BobbyCarrot.Movers;
 
 
 namespace BobbyCarrot.Util
@@ -63,14 +64,8 @@ namespace BobbyCarrot.Util
 		[SerializeField] private Setting setting;
 
 		public static CameraController instance { get; private set; }
-
-#if DEBUG
-		[SerializeField]
-#endif
 		private Rect originCamRect, camRect, boundRect, mapRect;
-
 		public Rect inputRect;
-
 		public float CAMRECT_ASPECT { get; private set; }
 
 
@@ -185,6 +180,38 @@ namespace BobbyCarrot.Util
 		}
 
 
+		private Vector3 walkerPos = Vector3.negativeInfinity, grassMowerPos = Vector3.negativeInfinity,
+			flyerPos = Vector3.negativeInfinity, fireballPos = Vector3.negativeInfinity;
+
+		private bool focusFireball;
+
+		private void LateUpdate()
+		{
+			var fireBall = FireBall.instance;
+			var walker = Walker.instance;
+			var grassMower = GrassMower.instance;
+			var flyer = Flyer.instance;
+
+			if (fireBall?.gameObject.activeSelf == true && fireBall.transform.position != fireballPos)
+			{
+				focusFireball = true;
+				Focus(fireballPos = fireBall.transform.position);
+			}
+			else if (focusFireball && !fireBall.gameObject.activeSelf)
+			{
+				focusFireball = false;
+				Focus(walker.gameObject.activeSelf ? walker.transform.position : grassMower.transform.position);
+			}
+
+			else if (walker.gameObject.activeSelf && walker.transform.position != walkerPos)
+				Focus(walkerPos = walker.transform.position);
+			else if (grassMower?.gameObject.activeSelf == true && grassMower.transform.position != grassMowerPos)
+				Focus(grassMowerPos = grassMower.transform.position);
+			else if (flyer?.gameObject.activeSelf == true && flyer.transform.position != flyerPos)
+				Focus(flyerPos = flyer.transform.position);
+		}
+
+
 		// ##################  UTILITY METHODS  ####################################
 
 
@@ -196,6 +223,7 @@ namespace BobbyCarrot.Util
 		/// <returns></returns>
 		public async Task<bool> Move(Vector3 distance)
 		{
+			camRig.velocity = Vector2.zero;
 			var d = new Vector2(distance.x, distance.y);
 			var origin = camRig.position;
 			camRig.MovePosition(origin + d);
@@ -213,8 +241,8 @@ namespace BobbyCarrot.Util
 			var dir = distance.normalized;
 			var speedDir = dir * speed;
 			float length = distance.magnitude;
-			cancelSource.Cancel();                          // ?
-			cancelSource = new CancellationTokenSource();   // ?
+			//cancelSource.Cancel();                          // ?
+			//cancelSource = new CancellationTokenSource();   // ?
 			var token = cancelSource.Token;
 
 			while (length > 0)

@@ -55,12 +55,5 @@ namespace BobbyCarrot.Movers
 				gameObject.SetActive(false);
 			}
 		}
-
-
-		protected override async Task Move(bool focusCamera = false)
-		{
-			await base.Move();
-			await CameraController.instance.Focus(transform.position, 0.1f);
-		}
 	}
 }

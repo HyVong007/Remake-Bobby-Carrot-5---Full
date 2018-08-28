@@ -55,7 +55,9 @@ namespace BobbyCarrot
 
 		public static async Task WaitForFrame(int frame)
 		{
+			R.isGlobalLock = true;
 			for (int i = 0; i < frame; ++i) await Task.Delay(1);
+			R.isGlobalLock = false;
 		}
 	}
 }
