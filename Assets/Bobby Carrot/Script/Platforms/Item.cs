@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using BobbyCarrot.Movers;
 using System.Threading.Tasks;
-using System.IO;
 using System.Threading;
+using BobbyCarrot.Util;
 
 
 namespace BobbyCarrot.Platforms
@@ -11,11 +11,9 @@ namespace BobbyCarrot.Platforms
 	public class Item : Platform
 	{
 		public new Name name { get; private set; }
+		public static readonly ItemCountDict count = new ItemCountDict();
 
-		[SerializeField] private ItemName_Sprite_Dict sprites;
 		[SerializeField] private NormalGround emptyGround;
-
-		public static readonly Dictionary<Name, int> count = new Dictionary<Name, int>();
 
 		public enum Name
 		{
@@ -28,7 +26,7 @@ namespace BobbyCarrot.Platforms
 		private void Start()
 		{
 			if (name == Name.GOLDEN_COIN) animator.enabled = true;
-			else spriteRenderer.sprite = sprites[name];
+			else spriteRenderer.sprite = R.asset.sprites.items[name];
 		}
 
 
@@ -56,19 +54,18 @@ namespace BobbyCarrot.Platforms
 					break;
 			}
 
-			Destroy(gameObject);
 			cts.Cancel();
 			blinker?.SetActive(false);
+			Destroy(gameObject);
 		}
 
 
 		static Item()
 		{
+			var names = System.Enum.GetValues(typeof(Name));
 			Board.onReset += () =>
 			{
-				foreach (Name name in System.Enum.GetValues(typeof(Name)))
-					count[name] = 0;
-
+				foreach (Name name in names) count[name] = 0;
 				blinker = null;
 			};
 		}
@@ -97,35 +94,6 @@ namespace BobbyCarrot.Platforms
 			}
 
 			if (use) item.Use();
-			return item;
-		}
-
-
-		public static new byte[] Serialize(object obj)
-		{
-			var item = (Item)obj;
-			using (MemoryStream m = new MemoryStream())
-			using (BinaryWriter w = new BinaryWriter(m))
-			{
-				var pos = item.transform.position;
-				w.Write(pos.x); w.Write(pos.y);
-				w.Write((byte)item.name);
-
-				return m.ToArray();
-			}
-		}
-
-
-		public static new Item DeSerialize(byte[] data)
-		{
-			var item = Instantiate(R.asset.prefab.item);
-			using (MemoryStream m = new MemoryStream(data))
-			using (BinaryReader r = new BinaryReader(m))
-			{
-				item.transform.position = new Vector3(r.ReadSingle(), r.ReadSingle(), 0f);
-				item.name = (Name)r.ReadByte();
-			}
-
 			return item;
 		}
 
@@ -160,6 +128,24 @@ namespace BobbyCarrot.Platforms
 			await Task.Delay(Mathf.CeilToInt(delaySeconds * 1000));
 			if (token.IsCancellationRequested) return;
 			blinker?.gameObject.SetActive(false);
+		}
+
+
+		public class ItemCountDict : Dictionary<Name, int>
+		{
+			public new int this[Name name]
+			{
+				get
+				{
+					return base[name];
+				}
+
+				set
+				{
+					base[name] = value;
+					HUD.instance.SetItemUI(name);
+				}
+			}
 		}
 	}
 }

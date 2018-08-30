@@ -11,8 +11,15 @@ namespace BobbyCarrot.Platforms
 			Platform.DeSerialize(ID, wPos, R.asset.prefab.locker);
 
 
-		public override bool CanEnter(Mover mover) =>
-			mover is Flyer || mover is FireBall || (mover is Walker && Item.count[Item.Name.KEY] > 0);
+		public override bool CanEnter(Mover mover)
+		{
+			if (mover is Flyer || mover is FireBall) return true;
+			if (mover is Walker)
+				if (Item.count[Item.Name.KEY] > 0) return true;
+				else Item.BlinkItem(Item.Name.KEY, mover.transform);
+
+			return false;
+		}
 
 
 		public override async Task OnEnter(Mover mover)

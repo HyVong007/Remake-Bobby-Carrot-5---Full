@@ -16,6 +16,21 @@ namespace BobbyCarrot.Platforms
 
 		public static NormalGround startPoint { get; private set; }
 
+		public static NormalGround endPoint { get; private set; }
+
+
+		static NormalGround()
+		{
+			System.Action f = () =>
+			  {
+				  if (Carrot.countDown == 0 && EasterEgg.countDown == 0)
+					  endPoint.animator.enabled = true;
+			  };
+
+			Carrot.onRemoveCarrot += f;
+			EasterEgg.onAddEgg += f;
+		}
+
 
 		public static new NormalGround DeSerialize(int ID, Vector3 wPos, bool use = true)
 		{
@@ -25,20 +40,15 @@ namespace BobbyCarrot.Platforms
 				obj.name = Name.START;
 				startPoint = obj;
 			}
-			else if (ID == 150) obj.name = Name.END;
+			else if (ID == 150)
+			{
+				obj.name = Name.END;
+				endPoint = obj;
+			}
 			else obj.name = Name.NORMAL;
 
 			if (use) obj.Use();
 			return obj;
-		}
-
-		// Platform.Serialize
-
-		public static new NormalGround DeSerialize(byte[] data)
-		{
-			int ID; Vector3 wPos;
-			DeSerialize(data, out ID, out wPos);
-			return DeSerialize(ID, wPos, false);
 		}
 
 
@@ -50,7 +60,10 @@ namespace BobbyCarrot.Platforms
 		{
 			if (name != Name.END || !(mover is Walker)) return;
 
-			// Check Carrot or Easter Egg count
+			if (Carrot.countDown == 0 && EasterEgg.countDown == 0)
+			{
+				// Bạn thắng rồi !
+			}
 		}
 	}
 }

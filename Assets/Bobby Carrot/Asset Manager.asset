@@ -11,6 +11,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d105c3388df0c534d81552aef33cc698, type: 3}
   m_Name: Asset Manager
   m_EditorClassIdentifier: 
+  sprites:
+    items:
+      m_keys: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000
+      m_values:
+      - {fileID: 21300814, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21300816, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21300818, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21300820, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21300822, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21300824, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21300826, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21300830, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21300926, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21300954, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21300998, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21301004, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
+      - {fileID: 21301008, guid: 7701e10c5805eab40804539ef4a56344, type: 3}
   anim:
     star: {fileID: 9100000, guid: 0113beb41dace2442868b1a1299c2ec7, type: 2}
     water: {fileID: 9100000, guid: 5f730dd5ea739804493efe5e85cce65b, type: 2}

@@ -11,6 +11,13 @@ namespace BobbyCarrot
 	public class AssetManager : ScriptableObject
 	{
 		[System.Serializable]
+		public struct Sprite
+		{
+			public ItemName_Sprite_Dict items;
+		}
+		public Sprite sprites;
+
+		[System.Serializable]
 		public struct Anim
 		{
 			public RuntimeAnimatorController star, water, waterFall, end,

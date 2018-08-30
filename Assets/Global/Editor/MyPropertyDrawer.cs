@@ -11,4 +11,5 @@
 [CustomPropertyDrawer(typeof(MirrorRotation_Sprite_Dict))]
 [CustomPropertyDrawer(typeof(BeanTreeNodeName_Sprite_Dict))]
 [CustomPropertyDrawer(typeof(DragonNodeName_Sprite_Dict))]
+[CustomPropertyDrawer(typeof(ItemName_Text_Dict))]
 public class MyPropertyDrawer : SerializableDictionaryPropertyDrawer { }

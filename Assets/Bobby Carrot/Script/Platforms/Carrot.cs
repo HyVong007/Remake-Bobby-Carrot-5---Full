@@ -41,6 +41,8 @@ namespace BobbyCarrot.Platforms
 		}
 
 
+		public static event System.Action onRemoveCarrot;
+
 		public override async Task OnEnter(Mover mover)
 		{
 			if (mover is Flyer || mover is FireBall) return;
@@ -57,7 +59,7 @@ namespace BobbyCarrot.Platforms
 					spriteRenderer.sprite = sprites[State.HOLE];
 					--countDown;
 
-					// Check countDown and change NormalGround (End)
+					onRemoveCarrot?.Invoke();
 					return;
 			}
 		}

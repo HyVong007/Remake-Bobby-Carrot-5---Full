@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using BobbyCarrot.Platforms;
 
 
@@ -31,3 +32,6 @@ public class DragonNodeName_Sprite_Dict : SerializableDictionary<DragonNode.Name
 
 [System.Serializable]
 public class PinWheelColor_GameObject_Dict : SerializableDictionary<PinWheel.Color, GameObject> { }
+
+[System.Serializable]
+public class ItemName_Text_Dict : SerializableDictionary<Item.Name, Text> { }
